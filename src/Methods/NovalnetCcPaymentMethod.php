@@ -108,7 +108,7 @@ class NovalnetCcPaymentMethod extends PaymentMethodBaseService
      *
      * @return string
      */
-    public function getName():string
+    public function getName(string $lang = "de"):string
     {   
 		$name = trim($this->config->get('Novalnet.novalnet_cc_payment_name'));
         return ($name ? $name : $this->paymentHelper->getTranslatedText('novalnet_cc'));
@@ -119,7 +119,7 @@ class NovalnetCcPaymentMethod extends PaymentMethodBaseService
      *
      * @return string
      */
-    public function getIcon():string
+    public function getIcon(string $lang = "de"):string
     {
         $logoUrl = $this->config->get('Novalnet.novalnet_cc_payment_logo');
         if($logoUrl == 'images/cc.png'){
@@ -136,7 +136,7 @@ class NovalnetCcPaymentMethod extends PaymentMethodBaseService
      *
      * @return string
      */
-    public function getDescription():string
+    public function getDescription(string $lang = "de"):string
     {
 		$description = trim($this->config->get('Novalnet.novalnet_cc_description'));
 		$description = ($description ? $description : $this->paymentHelper->getTranslatedText('cc_payment_description'));
