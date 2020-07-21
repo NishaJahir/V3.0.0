@@ -105,12 +105,6 @@ class NovalnetServiceProvider extends ServiceProvider
                 AfterBasketItemAdd::class,
                 AfterBasketCreate::class
             ]);
-        $payContainer->register('plenty_novalnet::NOVALNET_PREPAYMENT', NovalnetPrepaymentPaymentMethod::class,
-            [
-                AfterBasketChanged::class,
-                AfterBasketItemAdd::class,
-                AfterBasketCreate::class
-            ]);
         $payContainer->register('plenty_novalnet::NOVALNET_CC', NovalnetCcPaymentMethod::class,
             [
                 AfterBasketChanged::class,
@@ -123,48 +117,13 @@ class NovalnetServiceProvider extends ServiceProvider
                 AfterBasketItemAdd::class,
                 AfterBasketCreate::class
             ]);
-        $payContainer->register('plenty_novalnet::NOVALNET_SOFORT', NovalnetSofortPaymentMethod::class,
-            [
-                AfterBasketChanged::class,
-                AfterBasketItemAdd::class,
-                AfterBasketCreate::class
-            ]);
         $payContainer->register('plenty_novalnet::NOVALNET_PAYPAL', NovalnetPaypalPaymentMethod::class,
             [
                 AfterBasketChanged::class,
                 AfterBasketItemAdd::class,
                 AfterBasketCreate::class
             ]);
-        $payContainer->register('plenty_novalnet::NOVALNET_IDEAL', NovalnetIdealPaymentMethod::class,
-            [
-                AfterBasketChanged::class,
-                AfterBasketItemAdd::class,
-                AfterBasketCreate::class
-            ]);
-        $payContainer->register('plenty_novalnet::NOVALNET_EPS', NovalnetEpsPaymentMethod::class,
-            [
-                AfterBasketChanged::class,
-                AfterBasketItemAdd::class,
-                AfterBasketCreate::class
-            ]);
-        $payContainer->register('plenty_novalnet::NOVALNET_GIROPAY', NovalnetGiropayPaymentMethod::class,
-            [
-                AfterBasketChanged::class,
-                AfterBasketItemAdd::class,
-                AfterBasketCreate::class
-            ]);
-        $payContainer->register('plenty_novalnet::NOVALNET_PRZELEWY', NovalnetPrzelewyPaymentMethod::class,
-            [
-                AfterBasketChanged::class,
-                AfterBasketItemAdd::class,
-                AfterBasketCreate::class
-            ]);
-        $payContainer->register('plenty_novalnet::NOVALNET_CASHPAYMENT', NovalnetCashPaymentMethod::class,
-            [
-                AfterBasketChanged::class,
-                AfterBasketItemAdd::class,
-                AfterBasketCreate::class
-            ]);
+        
             
         // Event for Onhold - Capture Process
         $captureProcedureTitle = [
