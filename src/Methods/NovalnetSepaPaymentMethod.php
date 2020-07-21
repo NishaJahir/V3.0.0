@@ -124,7 +124,7 @@ class NovalnetSepaPaymentMethod extends PaymentMethodBaseService
         if($logoUrl == 'images/sepa.png'){
             /** @var Application $app */
             $app = pluginApp(Application::class);
-            $logoUrl = $app->getUrlPath('novalnet') .'/images/sepa.png';
+            $logoUrl = $app->getUrlPath('novalnet') .'/images/nn_sepa.png';
         } 
         return $logoUrl;
     }
