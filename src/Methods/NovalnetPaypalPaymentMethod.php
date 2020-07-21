@@ -124,7 +124,7 @@ class NovalnetPaypalPaymentMethod extends PaymentMethodBaseService
         if($logoUrl == 'images/paypal.png'){
             /** @var Application $app */
             $app = pluginApp(Application::class);
-            $logoUrl = $app->getUrlPath('novalnet') .'/images/paypal.png';
+            $logoUrl = $app->getUrlPath('novalnet') .'/images/nn_paypal.png';
         } 
         return $logoUrl;
     }
