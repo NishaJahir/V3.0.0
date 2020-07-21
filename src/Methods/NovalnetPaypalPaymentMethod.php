@@ -34,7 +34,7 @@ class NovalnetPaypalPaymentMethod extends PaymentMethodBaseService
     /**
      * @var ConfigRepository
      */
-    private $configRepository;
+    private $config;
 
     /**
      * @var PaymentHelper
@@ -58,12 +58,12 @@ class NovalnetPaypalPaymentMethod extends PaymentMethodBaseService
      * @param PaymentHelper $paymentHelper
      * @param PaymentService $paymentService
      */
-    public function __construct(ConfigRepository $configRepository,
+    public function __construct(ConfigRepository $config,
                                 PaymentHelper $paymentHelper,
                                 PaymentService $paymentService,
 			       BasketRepositoryContract $basket)
     {
-        $this->config = $configRepository;
+        $this->config = $config;
         $this->paymentHelper = $paymentHelper;
         $this->paymentService = $paymentService;
 	    $this->basket = $basket->load();
@@ -107,7 +107,7 @@ class NovalnetPaypalPaymentMethod extends PaymentMethodBaseService
      *
      * @return string
      */
-    public function getName(string $lang = "de"):string
+    public function getName(string $lang = 'de'):string
     {   
 		$name = trim($this->config->get('Novalnet.novalnet_paypal_payment_name'));
         return ($name ? $name : $this->paymentHelper->getTranslatedText('novalnet_paypal'));
@@ -118,7 +118,7 @@ class NovalnetPaypalPaymentMethod extends PaymentMethodBaseService
      *
      * @return string
      */
-    public function getIcon(string $lang = "de"):string
+    public function getIcon(string $lang = 'de'):string
     {
         $logoUrl = $this->config->get('Novalnet.novalnet_paypal_payment_logo');
         if($logoUrl == 'images/paypal.png'){
@@ -134,7 +134,7 @@ class NovalnetPaypalPaymentMethod extends PaymentMethodBaseService
      *
      * @return string
      */
-    public function getDescription(string $lang = "de"):string
+    public function getDescription(string $lang = 'de'):string
     {
 		$description = trim($this->config->get('Novalnet.novalnet_paypal_description'));
         return ($description ? $description : $this->paymentHelper->getTranslatedText('redirectional_payment_description'));
