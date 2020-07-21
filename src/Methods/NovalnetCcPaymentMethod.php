@@ -122,7 +122,7 @@ class NovalnetCcPaymentMethod extends PaymentMethodBaseService
     public function getIcon(string $lang = 'de'):string
     {
         $logoUrl = $this->config->get('Novalnet.novalnet_cc_payment_logo');
-        if($logoUrl == 'images/cc.png'){
+        if($logoUrl == 'images/nn_cc.png'){
             /** @var Application $app */
             $app = pluginApp(Application::class);
             $logoUrl = $app->getUrlPath('novalnet') .'/images/nn_cc.png';
