@@ -125,7 +125,7 @@ class NovalnetCcPaymentMethod extends PaymentMethodBaseService
         if($logoUrl == 'images/cc.png'){
             /** @var Application $app */
             $app = pluginApp(Application::class);
-            $logoUrl = $app->getUrlPath('novalnet') .'/images/cc.png';
+            $logoUrl = $app->getUrlPath('novalnet') .'/images/nn_cc.png';
         } 
         return $logoUrl;
         
