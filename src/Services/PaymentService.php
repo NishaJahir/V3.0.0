@@ -777,7 +777,7 @@ class PaymentService
 		'plugin_version' => $nnPaymentData['system_version'],
 		'test_mode' => !empty($nnPaymentData['test_mode']) ? $this->paymentHelper->getTranslatedText('test_order',$lang) : 0,
 		'invoice_bankname'  => !empty($nnPaymentData['invoice_bankname']) ? $nnPaymentData['invoice_bankname'] : 0,
-		'invoice_bankplace' => !empty($nnPaymentData['invoice_bankplace']) ? $nnPaymentData['invoice_bankplace'] : 0,
+		'invoice_bankplace' => !empty($nnPaymentData['invoice_bankplace']) ? utf8_encode($nnPaymentData['invoice_bankplace']) : 0,
 		'invoice_iban'      => !empty($nnPaymentData['invoice_iban']) ? $nnPaymentData['invoice_iban'] : 0,
 		'invoice_bic'       => !empty($nnPaymentData['invoice_bic']) ? $nnPaymentData['invoice_bic'] : 0,
 		'due_date'          => !empty($nnPaymentData['due_date']) ? $nnPaymentData['due_date'] : 0,
