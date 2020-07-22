@@ -162,7 +162,7 @@ class NovalnetInvoicePaymentMethod extends PaymentMethodBaseService
     public function getBackendIcon():string {
 		/** @var Application $app */
 		$app = pluginApp(Application::class);
-		$logoUrl = $app->getUrlPath('novalnet') .'/images/nn_invoice__backend_icon.svg';
+		$logoUrl = $app->getUrlPath('novalnet') .'/images/nn_invoice_backend_icon.svg';
 		return $logoUrl;
 	}
 }
