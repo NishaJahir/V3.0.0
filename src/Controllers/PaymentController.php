@@ -155,7 +155,10 @@ class PaymentController extends Controller
                 $this->paymentService->pushNotification($notificationMessage, 'success', 100);
                 return $this->response->redirectTo('place-order');
             }
-        }
+        } elseif ( $requestData['paymentKey'] == 'NOVALNET_SEPA' ) {
+                    $serverRequestData['data']['bank_account_holder'] = $requestData['nn_sepa_cardholder'];
+                    $serverRequestData['data']['iban'] = $requestData['nn_sepa_iban'];                  
+            }
         $this->sessionStorage->getPlugin()->setValue('nnPaymentData', $serverRequestData);  
         return $this->response->redirectTo('place-order');
     }
