@@ -540,6 +540,36 @@ class PaymentService
         ];
     }
     
+	public function callCaptureVoid($order, $captureVoid=false) {
+		
+		$payments = pluginApp(\Plenty\Modules\Payment\Contracts\PaymentRepositoryContract::class);  
+       	$paymentDetails = $payments->getPaymentsByOrderId($order->id);
+	    foreach ($paymentDetails as $paymentDetail)
+		{
+			$property = $paymentDetail->properties;
+			foreach($property as $proper)
+			{
+				  if ($proper->typeId == 1)
+				  {
+					$tid = $proper->value;
+				  }
+				  if ($proper->typeId == 30)
+				  {
+					$status = $proper->value;
+				  }
+			}
+		}
+
+	    $orderInfo = $this->transaction->getTransactionData('tid', $tid);
+	    $order_info = json_decode($orderInfo[0]->additionalInfo);
+	    $key = $order_info->payment_id;
+	    
+	    if(in_array($status, ['85', '91', '98', '99'])) {
+        $this->doCaptureVoid($order, $paymentDetails, $tid, $order_info, $captureVoid);
+	    } 
+		
+	}
+	
     /**
      * Execute capture and void process
      *
@@ -550,7 +580,7 @@ class PaymentService
      * @param bool $capture
      * @return none
      */
-    public function doCaptureVoid($order, $paymentDetails, $tid, $key, $invoiceDetails, $capture=false) 
+   public function doCaptureVoid($order, $paymentDetails, $tid, $order_info, $capture=false)
     {
         
         try {
@@ -559,7 +589,7 @@ class PaymentService
             'auth_code'      => $this->paymentHelper->getNovalnetConfig('novalnet_auth_code'),
             'product'        => $this->paymentHelper->getNovalnetConfig('novalnet_product_id'),
             'tariff'         => $this->paymentHelper->getNovalnetConfig('novalnet_tariff_id'),
-            'key'            => $key, 
+            'key'            => $order_info->payment_id, 
             'edit_status'    => '1', 
             'tid'            => $tid, 
             'remote_ip'      => $this->paymentHelper->getRemoteAddress(),
@@ -586,13 +616,7 @@ class PaymentService
             $transactionComments = '';
             if($responseData['tid_status'] == '100') {
                    if (in_array($key, ['27', '41'])) {
-                     $bankDetails = json_decode($invoiceDetails);
-                     $paymentData['invoice_bankname'] = $bankDetails->invoice_bankname;
-                     $paymentData['invoice_bankplace'] = $bankDetails->invoice_bankplace;
-                     $paymentData['invoice_iban'] = $bankDetails->invoice_iban;
-                     $paymentData['invoice_bic'] = $bankDetails->invoice_bic;
-                     $paymentData['due_date'] = !empty($responseData['due_date']) ? $responseData['due_date'] : $bankDetails->due_date;
-                     $paymentData['payment_id'] = $key;
+                     $this->transactionLogData->updateTransactionData('orderNo', $order->id);
                  } 
                $transactionComments .= PHP_EOL . sprintf($this->paymentHelper->getTranslatedText('transaction_confirmation', $paymentRequestData['lang']), date('d.m.Y'), date('H:i:s'));
            } else {
