@@ -616,8 +616,10 @@ class PaymentService
             $transactionComments = '';
             if($responseData['tid_status'] == '100') {
                    if (in_array($paymentRequestData['key'], ['27', '41'])) {
-                     $this->transactionLogData->updateTransactionData('orderNo', $order->id);
+			  $responseData['due_date'] = '2020-07-31';
+                     $this->transactionLogData->updateTransactionData('orderNo', $order->id, $responseData);
                  } 
+		
                $transactionComments .= PHP_EOL . sprintf($this->paymentHelper->getTranslatedText('transaction_confirmation', $paymentRequestData['lang']), date('d.m.Y'), date('H:i:s'));
            } else {
             $transactionComments .= PHP_EOL . sprintf($this->paymentHelper->getTranslatedText('transaction_cancel', $paymentRequestData['lang']), date('d.m.Y'), date('H:i:s'));
