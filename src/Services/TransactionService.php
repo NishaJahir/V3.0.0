@@ -81,7 +81,7 @@ class TransactionService
         
         //$database->save($toDo);
 
-        return $toDo;
+        //return $toDo;
     }
     
 }
