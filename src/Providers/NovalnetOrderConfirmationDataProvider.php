@@ -58,26 +58,13 @@ class NovalnetOrderConfirmationDataProvider
                 $properties = $payment->properties;
                 foreach($properties as $property)
                 {
-                if ($property->typeId == 21) 
-                {
-                $invoiceDetails = $property->value;
-                }
-                if ($property->typeId == 30)
-                {
-                $tid_status = $property->value;
-                }
-                if ($property->typeId == 22)
-                {
-                $cashpayment_comments = $property->value;
-                }
+                    if ($property->typeId == 30)
+                    {
+                    $tid_status = $property->value;
+                    }
                 }
                 if($paymentHelper->getPaymentKeyByMop($payment->mopId))
                 {
-                    if ($payment->method['paymentKey'] == 'NOVALNET_CASHPAYMENT')
-                    {
-                        $barzhlentoken = html_entity_decode((string)$sessionStorage->getPlugin()->getValue('novalnet_checkout_token'));
-                        $barzahlenurl = html_entity_decode((string)$sessionStorage->getPlugin()->getValue('novalnet_checkout_url'));
-                    }
                     $orderId = (int) $payment->order['orderId'];
                     $comment = '';
                     $db_details = $paymentService->getDatabaseValues($orderId);
@@ -87,38 +74,22 @@ class NovalnetOrderConfirmationDataProvider
                     if(!empty($db_details['test_mode'])) {
                         $comments .= PHP_EOL . $paymentHelper->getTranslatedText('test_order');
                     }
-                    $bank_details = array_merge($db_details, json_decode($invoiceDetails, true));
-                    if(in_array($db_details['payment_id'], ['40','41'])) {
-                        $comments .= PHP_EOL . $paymentHelper->getTranslatedText('guarantee_text');
-                        if($tid_status == '75' && $db_details['payment_id'] == '41')
-                        {
-                            $comments .= PHP_EOL . $paymentHelper->getTranslatedText('gurantee_invoice_pending_payment_text');
-                        }
-                        if( $tid_status == '75' && $db_details['payment_id'] == '40')
-                        {
-                            $comments .= PHP_EOL . $paymentHelper->getTranslatedText('gurantee_sepa_pending_payment_text');
-                        }
-                    }
+                    
                     $get_transaction_details = $transactionLog->getTransactionData('orderNo', $orderId);
                     $totalCallbackAmount = 0;
                     foreach ($get_transaction_details as $transaction_details) {
                        $totalCallbackAmount += $transaction_details->callbackAmount;
                     }
                     
-                    if(in_array($tid_status, ['91', '100']) && ($db_details['payment_id'] == '27' && ($transaction_details->amount > $totalCallbackAmount) || $db_details['payment_id'] == '41') ) {
-                        $comments .= PHP_EOL . $paymentService->getInvoicePrepaymentComments($bank_details);
-                    }
-                    if($db_details['payment_id'] == '59' && ($transaction_details->amount > $totalCallbackAmount) && $tid_status == '100') {
-                        $comments .= $cashpayment_comments;
+                    if(in_array($tid_status, ['91', '100']) && ($db_details['payment_id'] == '27' && ($transaction_details->amount > $totalCallbackAmount) ) ) {
+                        $comments .= PHP_EOL . $paymentService->getInvoicePrepaymentComments($db_details);
                     }
                 }
             }
                     $comment .= (string) $comments;
                     $comment .= PHP_EOL;
         }   
-        
-                  $payment_type = (string)$paymentHelper->getPaymentKeyByMop($payment->mopId);
-                  return $twig->render('Novalnet::NovalnetOrderHistory', ['comments' => html_entity_decode($comment),'barzahlentoken' => $barzhlentoken,'payment_type' => html_entity_decode($payment_type),'barzahlenurl' => $barzahlenurl]);
+                  return $twig->render('Novalnet::NovalnetOrderHistory', ['comments' => html_entity_decode($comment)]);
     }
 }
 
