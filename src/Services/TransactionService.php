@@ -87,9 +87,10 @@ class TransactionService
 		$additionalInfo['invoice_type']      = !empty($response['invoice_type']) ? $response['invoice_type'] : $additionalInfo['invoice_type'];
 		$additionalInfo['invoice_account_holder'] = !empty($response['invoice_account_holder']) ? $response['invoice_account_holder'] : $additionalInfo['invoice_account_holder']; 
         $orderInfo->additionalInfo = json_encode($additionalInfo); 
-        $database->save($orderInfo);
+	     $this->getLogger(__METHOD__)->error('update', $orderInfo);
+       // $database->save($orderInfo);
         
-        $this->getLogger(__METHOD__)->error('update', $orderInfo);
+       
 
         //return $toDo;
     }
