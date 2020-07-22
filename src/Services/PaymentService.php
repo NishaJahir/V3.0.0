@@ -560,7 +560,7 @@ class PaymentService
 			}
 		}
 
-	    $orderInfo = $this->transaction->getTransactionData('tid', $tid);
+	    $orderInfo = $this->transactionLogData->getTransactionData('tid', $tid);
 	    $order_info = json_decode($orderInfo[0]->additionalInfo);
 	    $key = $order_info->payment_id;
 	    
@@ -615,14 +615,14 @@ class PaymentService
             
             $transactionComments = '';
             if($responseData['tid_status'] == '100') {
-                   if (in_array($key, ['27', '41'])) {
+                   if (in_array($paymentRequestData['key'], ['27', '41'])) {
                      $this->transactionLogData->updateTransactionData('orderNo', $order->id);
                  } 
                $transactionComments .= PHP_EOL . sprintf($this->paymentHelper->getTranslatedText('transaction_confirmation', $paymentRequestData['lang']), date('d.m.Y'), date('H:i:s'));
            } else {
             $transactionComments .= PHP_EOL . sprintf($this->paymentHelper->getTranslatedText('transaction_cancel', $paymentRequestData['lang']), date('d.m.Y'), date('H:i:s'));
         }
-             if (($responseData['tid_status'] == '100' && $key == '27') || $responseData['tid_status'] != '100') {
+             if (($responseData['tid_status'] == '100' && $paymentRequestData['key'] == '27') || $responseData['tid_status'] != '100') {
              $paymentData['paid_amount'] = 0;
              }
              $paymentData['booking_text'] = $transactionComments;  
