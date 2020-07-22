@@ -262,18 +262,10 @@ class NovalnetServiceProvider extends ServiceProvider
             $properties = $payment->properties;
             foreach($properties as $property)
             {
-            if ($property->typeId == 21) 
-            {
-            $invoiceDetails = $property->value;
-            }
-            if ($property->typeId == 22)
-            {
-            $cashpayment_comments = $property->value;
-            }
-            if($property->typeId == 30)
-            {
-            $tid_status = $property->value;
-            }
+		    if($property->typeId == 30)
+		    {
+		    $tid_status = $property->value;
+		    }
             }
         }
         $paymentKey = $paymentHelper->getPaymentKeyByMop($payments[0]->mopId);
@@ -283,24 +275,20 @@ class NovalnetServiceProvider extends ServiceProvider
 	    foreach ($get_transaction_details as $transaction_details) {
 	       $totalCallbackAmount += $transaction_details->callbackAmount;
 	    }
-        if (in_array($paymentKey, ['NOVALNET_INVOICE', 'NOVALNET_PREPAYMENT', 'NOVALNET_CC', 'NOVALNET_SEPA', 'NOVALNET_CASHPAYMENT', 'NOVALNET_SOFORT', 'NOVALNET_IDEAL', 'NOVALNET_EPS', 'NOVALNET_GIROPAY', 'NOVALNET_PAYPAL', 'NOVALNET_PRZELEWY']) && !empty($db_details['plugin_version'])
+        if (in_array($paymentKey, ['NOVALNET_INVOICE', 'NOVALNET_CC', 'NOVALNET_SEPA', 'NOVALNET_PAYPAL']) && !empty($db_details['plugin_version'])
         ) {
              
         try {
-                $bank_details = array_merge($db_details, json_decode($invoiceDetails, true));
-            
                 $comments = '';
                 $comments .= PHP_EOL . $paymentHelper->getTranslatedText('nn_tid') . $db_details['tid'];
                 if(!empty($db_details['test_mode'])) {
                     $comments .= PHP_EOL . $paymentHelper->getTranslatedText('test_order');
                 }
-                 if(in_array($tid_status, ['91', '100']) && ($db_details['payment_id'] == '27' && ($transaction_details->amount > $totalCallbackAmount) || $db_details['payment_id'] == '41') ) {
-                $comments .= PHP_EOL . $paymentService->getInvoicePrepaymentComments($bank_details);
+                 if(in_array($tid_status, [91, 100]) && ($db_details['payment_id'] == 27 && ($transaction_details->amount > $totalCallbackAmount) ) ) {
+                $comments .= PHP_EOL . $paymentService->getInvoicePrepaymentComments($db_details);
                 
                 }
-                 if($db_details['payment_id'] == '59' && ($transaction_details->amount > $totalCallbackAmount) && $tid_status == '100' ) {
-                $comments .= PHP_EOL . $cashpayment_comments;   
-                }
+                
                 $orderPdfGenerationModel = pluginApp(OrderPdfGeneration::class);
                 $orderPdfGenerationModel->advice = $paymentHelper->getTranslatedText('novalnet_details'). PHP_EOL . $comments;
                 if ($event->getDocType() == Document::INVOICE) {
