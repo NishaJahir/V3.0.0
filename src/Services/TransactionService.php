@@ -78,7 +78,8 @@ class TransactionService
         $database = pluginApp(DataBase::class);
         $orderInfo    = $database->query(TransactionLog::class)->where($key, '=', $value)->get();
        
-        $additionalInfo = json_decode($orderInfo->additionalInfo,true);
+	 $toDo = $orderInfo[0];  
+        $additionalInfo = json_decode($toDo->additionalInfo,true);
         $additionalInfo['invoice_bankname']  = !empty($response['invoice_bankname']) ? $response['invoice_bankname'] : $additionalInfo['invoice_bankname'];
 		$additionalInfo['invoice_bankplace'] = !empty($response['invoice_bankplace']) ? $response['invoice_bankplace'] : $additionalInfo['invoice_bankplace'];
 		$additionalInfo['invoice_iban']      = !empty($response['invoice_iban']) ? $response['invoice_iban'] : $additionalInfo['invoice_iban'];
@@ -86,9 +87,9 @@ class TransactionService
 		$additionalInfo['due_date']          = !empty($response['due_date']) ? $response['due_date'] : $additionalInfo['due_date'];
 		$additionalInfo['invoice_type']      = !empty($response['invoice_type']) ? $response['invoice_type'] : $additionalInfo['invoice_type'];
 		$additionalInfo['invoice_account_holder'] = !empty($response['invoice_account_holder']) ? $response['invoice_account_holder'] : $additionalInfo['invoice_account_holder']; 
-        $orderInfo->additionalInfo = json_encode($additionalInfo); 
-	     $this->getLogger(__METHOD__)->error('update', $orderInfo);
-       // $database->save($orderInfo);
+        $toDo->additionalInfo = json_encode($additionalInfo); 
+	     $this->getLogger(__METHOD__)->error('update', $toDo);
+       $database->save($toDo);
         
        
 
