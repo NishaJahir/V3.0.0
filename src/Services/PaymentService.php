@@ -543,8 +543,8 @@ class PaymentService
 	public function callCaptureVoid($order, $captureVoid=false) {
 		
 		$payments = pluginApp(\Plenty\Modules\Payment\Contracts\PaymentRepositoryContract::class);  
-       	$paymentDetails = $payments->getPaymentsByOrderId($order->id);
-	    foreach ($paymentDetails as $paymentDetail)
+       		$paymentDetails = $payments->getPaymentsByOrderId($order->id);
+	   	 foreach ($paymentDetails as $paymentDetail)
 		{
 			$property = $paymentDetail->properties;
 			foreach($property as $proper)
@@ -562,10 +562,9 @@ class PaymentService
 
 	    $orderInfo = $this->transactionLogData->getTransactionData('tid', $tid);
 	    $order_info = json_decode($orderInfo[0]->additionalInfo);
-	    $key = $order_info->payment_id;
 	    
 	    if(in_array($status, ['85', '91', '98', '99'])) {
-        $this->doCaptureVoid($order, $paymentDetails, $tid, $order_info, $captureVoid);
+        	$this->doCaptureVoid($order, $paymentDetails, $tid, $order_info, $captureVoid);
 	    } 
 		
 	}
@@ -576,7 +575,6 @@ class PaymentService
      * @param object $order
      * @param object $paymentDetails
      * @param int $tid
-     * @param int $key
      * @param bool $capture
      * @return none
      */
@@ -590,33 +588,32 @@ class PaymentService
             'product'        => $this->paymentHelper->getNovalnetConfig('novalnet_product_id'),
             'tariff'         => $this->paymentHelper->getNovalnetConfig('novalnet_tariff_id'),
             'key'            => $order_info->payment_id, 
-            'edit_status'    => '1', 
+            'edit_status'    => 1, 
             'tid'            => $tid, 
             'remote_ip'      => $this->paymentHelper->getRemoteAddress(),
             'lang'           => 'de'  
              ];
         
         if($capture) {
-        $paymentRequestData['status'] = '100';
+        $paymentRequestData['status'] = 100;
         } else {
-        $paymentRequestData['status'] = '103';
+        $paymentRequestData['status'] = 103;
         }
         
          $response = $this->paymentHelper->executeCurl($paymentRequestData, NovalnetConstants::PAYPORT_URL);
          $responseData =$this->paymentHelper->convertStringToArray($response['response'], '&');
-         if ($responseData['status'] == '100') {
+         if ($responseData['status'] == 100) {
             $paymentData['currency']    = $paymentDetails[0]->currency;
             $paymentData['paid_amount'] = (float) $order->amounts[0]->invoiceTotal;
             $paymentData['tid']         = $tid;
             $paymentData['order_no']    = $order->id;
-            $paymentData['type']        = $responseData['tid_status'] != '100' ? 'cancel' : 'credit';
+            $paymentData['type']        = $responseData['tid_status'] != 100 ? 'cancel' : 'credit';
             $paymentData['mop']         = $paymentDetails[0]->mopId;
             $paymentData['tid_status']  = $responseData['tid_status'];
             
             $transactionComments = '';
-            if($responseData['tid_status'] == '100') {
-                   if (in_array($paymentRequestData['key'], ['27', '41'])) {
-			  $responseData['due_date'] = '2020-07-31';
+            if($responseData['tid_status'] == 100) {
+                   if ($paymentRequestData['key'] == 27)) {
                      $this->transactionLogData->updateTransactionData('orderNo', $order->id, $responseData);
                  } 
 		
