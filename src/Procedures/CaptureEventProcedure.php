@@ -63,37 +63,7 @@ class CaptureEventProcedure
         /* @var $order Order */
 	 
 	    $order = $eventTriggered->getOrder(); 
-	    $payments = pluginApp(\Plenty\Modules\Payment\Contracts\PaymentRepositoryContract::class);  
-       	$paymentDetails = $payments->getPaymentsByOrderId($order->id);
-	    
-	   
-	    foreach ($paymentDetails as $paymentDetail)
-		{
-			$property = $paymentDetail->properties;
-			foreach($property as $proper)
-			{
-				  if ($proper->typeId == 1)
-				  {
-					$tid = $proper->value;
-				  }
-				  if ($proper->typeId == 30)
-				  {
-					$status = $proper->value;
-				  }
-				  if ($proper->typeId == 21) 
-				  {
-					 $invoiceDetails = $proper->value;
-				  }
-			}
-		}
-
-	    $orderInfo = $this->transaction->getTransactionData('tid', $tid);
-	    $order_info = json_decode($orderInfo[0]->additionalInfo);
-	    $key = $order_info->payment_id;
-	    
-	    if(in_array($status, ['85', '91', '98', '99'])) {
-        $this->paymentService->doCaptureVoid($order, $paymentDetails, $tid, $key, $invoiceDetails, true);
-	    } 
+	    $this->paymentService->callCaptureVoid($order, true);
 
     }
 }
