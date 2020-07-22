@@ -79,13 +79,13 @@ class TransactionService
         $orderInfo    = $database->query(TransactionLog::class)->where($key, '=', $value)->get();
        
         $additionalInfo = json_decode($orderInfo->additionalInfo,true);
-        $additionalInfo['invoice_bankname']  = !empty($response['invoice_bankname']) ? $response['invoice_bankname'] : $additionalInfo['invoice_bankname'],
-		$additionalInfo['invoice_bankplace'] = !empty($response['invoice_bankplace']) ? $response['invoice_bankplace'] : $additionalInfo['invoice_bankplace'],
-		$additionalInfo['invoice_iban']      = !empty($response['invoice_iban']) ? $response['invoice_iban'] : $additionalInfo['invoice_iban'],
-		$additionalInfo['invoice_bic']       = !empty($response['invoice_bic']) ? $response['invoice_bic'] : $additionalInfo['invoice_bic'],
-		$additionalInfo['due_date']          = !empty($response['due_date']) ? $response['due_date'] : $additionalInfo['due_date'],
-		$additionalInfo['invoice_type']      = !empty($response['invoice_type']) ? $response['invoice_type'] : $additionalInfo['invoice_type'],
-		$additionalInfo['invoice_account_holder'] = !empty($response['invoice_account_holder']) ? $response['invoice_account_holder'] : $additionalInfo['invoice_account_holder'] 
+        $additionalInfo['invoice_bankname']  = !empty($response['invoice_bankname']) ? $response['invoice_bankname'] : $additionalInfo['invoice_bankname'];
+		$additionalInfo['invoice_bankplace'] = !empty($response['invoice_bankplace']) ? $response['invoice_bankplace'] : $additionalInfo['invoice_bankplace'];
+		$additionalInfo['invoice_iban']      = !empty($response['invoice_iban']) ? $response['invoice_iban'] : $additionalInfo['invoice_iban'];
+		$additionalInfo['invoice_bic']       = !empty($response['invoice_bic']) ? $response['invoice_bic'] : $additionalInfo['invoice_bic'];
+		$additionalInfo['due_date']          = !empty($response['due_date']) ? $response['due_date'] : $additionalInfo['due_date'];
+		$additionalInfo['invoice_type']      = !empty($response['invoice_type']) ? $response['invoice_type'] : $additionalInfo['invoice_type'];
+		$additionalInfo['invoice_account_holder'] = !empty($response['invoice_account_holder']) ? $response['invoice_account_holder'] : $additionalInfo['invoice_account_holder']; 
         $orderInfo->additionalInfo = json_encode($additionalInfo); 
         $database->save($orderInfo);
         
