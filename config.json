@@ -524,7 +524,15 @@
       },
        "Config.NovalnetInstalmentInvoiceTab":{  
          "label":"Config.NovalnetInstalmentInvoiceTab",
-         "formFields":{  
+         "formFields":{
+            "novalnet_instalment_invoice_basic_requirement":{  
+               "type":"inputTextArea",
+               "required":false,
+               "label":"Config.paymentActiveLabel",
+               "options":{  
+                  "defaultValue":"Config.basicRequirement"
+               }
+            },
             "novalnet_instalment_invoice_payment_active":{  
                "type":"checkBox",
                "required":false,
