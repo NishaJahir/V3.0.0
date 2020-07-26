@@ -24,7 +24,7 @@ use Novalnet\Helper\PaymentHelper;
  *
  * @package Novalnet\Migrations
  */
-class UpdatePaymentMethodName
+class CreateAndUpdatePaymentMethodName
 {
     /**
      * @var PaymentMethodRepositoryContract
@@ -57,16 +57,10 @@ class UpdatePaymentMethodName
     public function run()
     {
         $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_INVOICE', 'Novalnet Invoice');
-        $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_PREPAYMENT', 'Novalnet Prepayment');
         $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_CC', 'Novalnet Credit Card');
         $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_SEPA', 'Novalnet Direct Debit SEPA');
-        $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_SOFORT', 'Novalnet Online Bank Transfer');
         $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_PAYPAL', 'Novalnet PayPal');
-        $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_IDEAL', 'Novalnet iDEAL');
-        $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_EPS', 'Novalnet eps');
-        $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_GIROPAY', 'Novalnet giropay');
-        $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_PRZELEWY', 'Novalnet Przelewy24');
-        $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_CASHPAYMENT', 'Novalnet Barzahlen');
+        $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_INSTALLMENT_INVOICE', 'Novalnet Installment Invoice')
     }
 
 
@@ -86,7 +80,7 @@ class UpdatePaymentMethodName
                                 'name'       => $name
                                ];
             $this->paymentMethodRepository->createPaymentMethod($paymentMethodData);
-        } elseif ($payment_data[1] == $paymentKey && !in_array ($payment_data[2], ['Novalnet Invoice', 'Novalnet Prepayment', 'Novalnet Credit Card', 'Novalnet Direct Debit SEPA', 'Novalnet Online Bank Transfer', 'Novalnet PayPal', 'Novalnet iDEAL', 'Novalnet eps', 'Novalnet giropay', 'Novalnet Przelewy24', 'Novalnet Barzahlen']) ) {
+        } elseif ($payment_data[1] == $paymentKey && !in_array ($payment_data[2], ['Novalnet Invoice', 'Novalnet Credit Card', 'Novalnet Direct Debit SEPA', 'Novalnet PayPal']) ) {
           $paymentMethodData = ['pluginKey'  => 'plenty_novalnet',
                                 'paymentKey' => $paymentKey,
                                 'name'       => $name,
