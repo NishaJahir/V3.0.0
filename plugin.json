@@ -23,7 +23,7 @@
   "require": ["IO"],
   "serviceProvider": "Novalnet\\Providers\\NovalnetServiceProvider",
   "runOnBuild": [
-    "Novalnet\\Migrations\\UpdatePaymentMethodName",
+    "Novalnet\\Migrations\\CreateAndUpdatePaymentMethodName",
     "Novalnet\\Migrations\\CreateTransactionTable",
     "Novalnet\\Migrations\\UpdateTransactionTableDataType"
   ],
