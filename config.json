@@ -522,6 +522,206 @@
             }
          }
       },
+       "Config.NovalnetInstalmentInvoiceTab":{  
+         "label":"Config.NovalnetInstalmentInvoiceTab",
+         "formFields":{  
+            "novalnet_instalment_invoice_payment_active":{  
+               "type":"checkBox",
+               "required":false,
+               "label":"Config.paymentActiveLabel",
+               "options":{  
+                  "defaultValue":false
+               }
+            },
+            "novalnet_instalment_invoice_test_mode":{  
+               "type":"checkBox",
+               "required":false,
+               "label":"Config.testModeLabel",
+               "options":{  
+                  "defaultValue":false
+               }
+            },
+            "novalnet_instalment_invoice_payment_name":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.paymentNameLabel",
+               "options":{  
+                  "defaultValue":""
+               }
+            },
+            "novalnet_instalment_invoice_description":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.paymentDescriptionLabel",
+               "options":{  
+                  "defaultValue":""
+               }
+            },
+            "novalnet_instalment_invoice_payment_logo":{  
+               "type":"inputFile",
+               "required":false,
+               "label":"Config.paymentLogoLabel",
+               "options":{  
+                  "defaultValue":"images/nn_instalment_invoice.png"
+               }
+            },
+            "novalnet_instalment_invoice_min_amount":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.instalmentMinAmountLabel",
+               "options":{  
+                  "tooltip":"Config.InstalmentMinAmountTooltip",
+                  "defaultValue":""
+               }
+            },
+            "novalnet_instalment_invoice_payment_action": {
+          "type": "multiCheckBox",
+          "required": false,
+          "label": "Config.paymentActionLabel",
+          "options": {
+            "defaultValue": "false",
+            "checkBoxValues": [
+              {
+                "value": "false",
+                "caption": "Config.onholdCapture"
+              },
+              {
+                "value": "true",
+                "caption": "Config.onholdAuthorize"
+              }
+              
+            ]
+      }
+    },
+            "novalnet_instalment_invoice_on_hold":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.onHoldLabel",
+               "options":{  
+                  "tooltip":"Config.onHoldTooltip",
+                  "defaultValue":""
+               }
+            },
+             "novalnet_instalment_invoice_order_pending_status":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.orderPendingStatusLabel",
+               "options":{  
+                  "defaultValue":"3"
+               }
+            },
+            "novalnet_instalment_invoice_order_completion_status":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.orderCompletionStatusLabel",
+               "options":{  
+                  "defaultValue":"7.1"
+               }
+            },
+            "novalnet_instalment_invoice_recurring_period": {
+          "type": "selectBox",
+          "required": false,
+          "label": "Config.recurringPeriodLabel",
+          "options": {
+            "defaultValue": "0",
+            "selectBoxValues": [
+              {
+                "value": "0",
+                "caption": "Config.recurringPeriodEveryMonth"
+              },
+              {
+                "value": "1",
+                "caption": "Config.recurringPeriodEvery2Months"
+              },
+              {
+                "value": "2",
+                "caption": "Config.recurringPeriodEvery3Months"
+              },
+              {
+                "value": "3",
+                "caption": "Config.recurringPeriodEvery4Months"
+              },
+              {
+                "value": "4",
+                "caption": "Config.recurringPeriodEvery6Months"
+              }
+            ]
+          }
+        },
+         "novalnet_instalment_invoice_cycles": {
+          "type": "multiCheckBox",
+          "required": false,
+          "label": "Config.instalmentCyclesLabel",
+          "options": {
+            "defaultValue": "",
+            "checkBoxValues": [
+              {
+                "value": "2 Cycles",
+                "caption": "Config.instalmentCycle2"
+              },
+              {
+                "value": "3 Cycles",
+                "caption": "Config.instalmentCycle3"
+              },
+              {
+                "value": "4 Cycles",
+                "caption": "Config.instalmentCycle4"
+              },
+               {
+                "value": "6 Cycles",
+                "caption": "Config.instalmentCycle6"
+              },
+               {
+                "value": "8 Cycles",
+                "caption": "Config.instalmentCycle8"
+              },
+               {
+                "value": "9 Cycles",
+                "caption": "Config.instalmentCycle9"
+              },
+               {
+                "value": "12 Cycles",
+                "caption": "Config.instalmentCycle12"
+              },
+                {
+                "value": "18 Cycles",
+                "caption": "Config.instalmentCycle18"
+              },
+                {
+                "value": "24 Cycles",
+                "caption": "Config.instalmentCycle24"
+              }
+            ]
+      }
+    },
+            "novalnet_instalment_invoice_minimum_order_amount":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.minimumOrderAmountLabel",
+               "options":{  
+                  "tooltip":"Config.minimumOrderAmountTooltip",
+                  "defaultValue":""
+               }
+            },
+            "novalnet_instalment_invoice_maximum_order_amount":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.maximumOrderAmountLabel",
+               "options":{  
+                  "tooltip":"Config.maximumOrderAmountTooltip",
+                  "defaultValue":""
+               }
+            },
+            "novalnet_instalment_invoice_allowed_country":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.allowedCountryLabel",
+               "options":{  
+                  "defaultValue":""
+               }
+            }
+         }
+      },
       "Config.NovalnetPayPalTab":{  
          "label":"Config.NovalnetPayPalTab",
          "formFields":{  
@@ -593,10 +793,10 @@
                   "defaultValue":""
                }
             },
-            "novalnet_paypal_payment_pending_status":{  
+            "novalnet_paypal_order_pending_status":{  
                "type":"inputText",
                "required":false,
-               "label":"Config.paymentPendingStatusLabel",
+               "label":"Config.orderPendingStatusLabel",
                "options":{  
                   "defaultValue":"3"
                }
