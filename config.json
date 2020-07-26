@@ -565,15 +565,6 @@
                   "defaultValue":"images/nn_instalment_invoice.png"
                }
             },
-            "novalnet_instalment_invoice_min_amount":{  
-               "type":"inputText",
-               "required":false,
-               "label":"Config.instalmentMinAmountLabel",
-               "options":{  
-                  "tooltip":"Config.instalmentMinAmountTooltip",
-                  "defaultValue":""
-               }
-            },
             "novalnet_instalment_invoice_payment_action": {
           "type": "multiCheckBox",
           "required": false,
@@ -616,6 +607,15 @@
                "label":"Config.orderCompletionStatusLabel",
                "options":{  
                   "defaultValue":"7.1"
+               }
+            },
+            "novalnet_instalment_invoice_min_amount":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.instalmentMinAmountLabel",
+               "options":{  
+                  "tooltip":"Config.instalmentMinAmountTooltip",
+                  "defaultValue":""
                }
             },
             "novalnet_instalment_invoice_recurring_period": {
