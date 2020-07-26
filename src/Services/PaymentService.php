@@ -613,7 +613,7 @@ class PaymentService
             
             $transactionComments = '';
             if($responseData['tid_status'] == 100) {
-                   if ($paymentRequestData['key'] == 27)) {
+                   if ($paymentRequestData['key'] == 27) {
                      $this->transactionLogData->updateTransactionData('orderNo', $order->id, $responseData);
                  } 
 		
