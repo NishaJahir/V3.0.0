@@ -570,7 +570,7 @@
                "required":false,
                "label":"Config.instalmentMinAmountLabel",
                "options":{  
-                  "tooltip":"Config.InstalmentMinAmountTooltip",
+                  "tooltip":"Config.instalmentMinAmountTooltip",
                   "defaultValue":""
                }
             },
