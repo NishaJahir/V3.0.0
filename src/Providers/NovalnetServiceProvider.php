@@ -46,6 +46,7 @@ use Novalnet\Methods\NovalnetInvoicePaymentMethod;
 use Novalnet\Methods\NovalnetPrepaymentPaymentMethod;
 use Novalnet\Methods\NovalnetCcPaymentMethod;
 use Novalnet\Methods\NovalnetSepaPaymentMethod;
+use Novalnet\Methods\NovalnetInstalmentbyInvoicePaymentMethod;
 use Novalnet\Methods\NovalnetPaypalPaymentMethod;
 
 use Plenty\Modules\EventProcedures\Services\Entries\ProcedureEntry;
