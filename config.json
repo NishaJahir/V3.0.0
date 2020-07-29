@@ -624,26 +624,26 @@
           "label": "Config.instalmentRecurringPeriodLabel",
           "options": {
              "tooltip":"Config.instalmentRecurringPeriodTooltip",
-            "defaultValue": "Every month",
+            "defaultValue": "1",
             "selectBoxValues": [
               {
-                "value": "Every month",
-                "caption": "Config.recurringPeriodEveryMonth"
+                "value": "1",
+                "caption": "Config.recurringPeriodEvery1Month"
               },
               {
-                "value": "Every 2 month",
+                "value": "2",
                 "caption": "Config.recurringPeriodEvery2Months"
               },
               {
-                "value": "Every 3 month",
+                "value": "3",
                 "caption": "Config.recurringPeriodEvery3Months"
               },
               {
-                "value": "Every 4 month",
+                "value": "4",
                 "caption": "Config.recurringPeriodEvery4Months"
               },
               {
-                "value": "Every 6 month",
+                "value": "6",
                 "caption": "Config.recurringPeriodEvery6Months"
               }
             ]
@@ -655,42 +655,42 @@
           "label": "Config.instalmentCyclesLabel",
           "options": {
              "tooltip":"Config.instalmentCyclesTooltip",
-            "defaultValue": "",
+            "defaultValue": "2",
             "checkBoxValues": [
               {
-                "value": "2 Cycles",
+                "value": "2",
                 "caption": "Config.instalmentCycle2"
               },
               {
-                "value": "3 Cycles",
+                "value": "3",
                 "caption": "Config.instalmentCycle3"
               },
               {
-                "value": "4 Cycles",
+                "value": "4",
                 "caption": "Config.instalmentCycle4"
               },
                {
-                "value": "6 Cycles",
+                "value": "6",
                 "caption": "Config.instalmentCycle6"
               },
                {
-                "value": "8 Cycles",
+                "value": "8",
                 "caption": "Config.instalmentCycle8"
               },
                {
-                "value": "9 Cycles",
+                "value": "9",
                 "caption": "Config.instalmentCycle9"
               },
                {
-                "value": "12 Cycles",
+                "value": "12",
                 "caption": "Config.instalmentCycle12"
               },
                 {
-                "value": "18 Cycles",
+                "value": "18",
                 "caption": "Config.instalmentCycle18"
               },
                 {
-                "value": "24 Cycles",
+                "value": "24",
                 "caption": "Config.instalmentCycle24"
               }
             ]
