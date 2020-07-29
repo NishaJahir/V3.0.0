@@ -530,7 +530,6 @@
                "required":false,
                "label":"Config.paymentActiveLabel",
                "options":{
-                  "tooltip":"Config.basicRequirement",
                   "defaultValue":false
                }
             },
@@ -624,6 +623,7 @@
           "required": false,
           "label": "Config.recurringPeriodLabel",
           "options": {
+             "tooltip":"Config.recurringPeriodTooltip",
             "defaultValue": "0",
             "selectBoxValues": [
               {
@@ -654,6 +654,7 @@
           "required": false,
           "label": "Config.instalmentCyclesLabel",
           "options": {
+             "tooltip":"Config.instalmentCyclesTooltip",
             "defaultValue": "",
             "checkBoxValues": [
               {
