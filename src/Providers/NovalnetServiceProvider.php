@@ -212,7 +212,7 @@ class NovalnetServiceProvider extends ServiceProvider
 								'nnPaymentProcessUrl' => $paymentService->getProcessPaymentUrl(),
 								'paymentMopKey'       =>  $paymentKey,
 								'paymentName' 		  => $paymentName,
-								'instalment_net_amount'  => $paymentHelper->ConvertAmountToSmallerUnit($basket->basketAmount) . ' ' . $basket->currency,
+								'instalment_net_amount'  => $basket->basketAmount . ' ' . $basket->currency,
 								'endcustomername'     => empty(trim($endUserName)) ? $endCustomerName['firstName'] .' '. $endCustomerName['lastName'] : $endUserName
 								]);
                             $contentType = 'htmlContent';   
