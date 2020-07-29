@@ -205,7 +205,7 @@ class NovalnetServiceProvider extends ServiceProvider
                                 'nnFormDesign'          =>  $paymentService->getCcDesignConfig()
                                        ]);
                             $contentType = 'htmlContent';
-                        } elseif($paymentKey == 'NOVALNET_SEPA') {
+                        } elseif(in_array($paymentKey, ['NOVALNET_SEPA', 'NOVALNET_INSTALMENT_INVOICE'])) {
 			    			$endUserName = $address->firstName .' '. $address->lastName;
 			    			$endCustomerName = $paymentService->getCustomerName($address);
 							$content = $twig->render('Novalnet::PaymentForm.NOVALNET_SEPA', [
