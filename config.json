@@ -530,7 +530,7 @@
                "required":false,
                "label":"Config.basicRequirement",
                "options":{  
-                  "defaultValue":"<div class="input-group"><span class="input-group-addon nn_additional_span"><b><h5>Grundanforderungen für die Zahlungsgarantie</h5><br>Zugelassene Staaten: AT, DE, CH<br> Zugelassene Währung: EUR<br>Mindestbetrag der Bestellung >= 9,99 EUR<br>Mindestalter des Endkunden >= 18 Jahre<br>Rechnungsadresse und Lieferadresse müssen übereinstimmen<br>Geschenkgutscheine / Coupons sind nicht erlaubt</b></span></div>"
+                  "defaultValue":"Grundanforderungen für die Zahlungsgarantie <br> Zugelassene Staaten: AT, DE, CH<br> Zugelassene Währung: EUR<br>Mindestbetrag der Bestellung >= 9,99 EUR<br>Mindestalter des Endkunden >= 18 Jahre<br>Rechnungsadresse und Lieferadresse müssen übereinstimmen<br>Geschenkgutscheine / Coupons sind nicht erlaubt"
                }
             },
             "novalnet_instalment_invoice_payment_active":{  
