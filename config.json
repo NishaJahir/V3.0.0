@@ -525,14 +525,6 @@
        "Config.NovalnetInstalmentInvoiceTab":{  
          "label":"Config.NovalnetInstalmentInvoiceTab",
          "formFields":{
-            "novalnet_instalment_invoice_basic_requirement":{  
-               "type":"inputTextArea",
-               "required":false,
-               "label":"Config.basicRequirement",
-               "options":{  
-                  "defaultValue":"Grundanforderungen für die Zahlungsgarantie <br> Zugelassene Staaten: AT, DE, CH<br> Zugelassene Währung: EUR<br>Mindestbetrag der Bestellung >= 9,99 EUR<br>Mindestalter des Endkunden >= 18 Jahre<br>Rechnungsadresse und Lieferadresse müssen übereinstimmen<br>Geschenkgutscheine / Coupons sind nicht erlaubt"
-               }
-            },
             "novalnet_instalment_invoice_payment_active":{  
                "type":"checkBox",
                "required":false,
