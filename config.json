@@ -621,9 +621,9 @@
             "novalnet_instalment_invoice_recurring_period": {
           "type": "selectBox",
           "required": false,
-          "label": "Config.recurringPeriodLabel",
+          "label": "Config.instalmentRecurringPeriodLabel",
           "options": {
-             "tooltip":"Config.recurringPeriodTooltip",
+             "tooltip":"Config.instalmentRecurringPeriodTooltip",
             "defaultValue": "0",
             "selectBoxValues": [
               {
