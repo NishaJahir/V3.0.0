@@ -92,11 +92,13 @@
 				</div><br>
 					<div><b><label for="nn_instalment">{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}</label></b></div><br>
 					<div>{{trans("Novalnet::PaymentMethod.instalment_plan_desc")}}</div><br>
-					<div><b>{{trans("Novalnet::PaymentMethod.loan_amount_text")}} {{instalment_net_amount}}</b></div><br>
-					<div>
-					   <select id="nn_instalment_cycle" type="text" name="nn_instalment_cycle" placeholder="{{trans("Novalnet::PaymentMethod.month")}}" class="form-control">
-					   </select>
-					 </div>
+					<div class="row">
+						<div class="col-sm-4 form-control"><b>{{trans("Novalnet::PaymentMethod.loan_amount_text")}} {{instalment_net_amount}}</b></div>
+						<div class="col-sm-5">
+							<select id="nn_instalment_cycle" type="text" name="nn_instalment_cycle" placeholder="{{trans("Novalnet::PaymentMethod.month")}}" class="form-control">
+							</select>
+						</div>
+					</div>
 				
 				
 			 {% endif %}
