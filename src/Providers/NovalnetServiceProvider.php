@@ -216,7 +216,9 @@ class NovalnetServiceProvider extends ServiceProvider
 								'nnPaymentProcessUrl' => $paymentService->getProcessPaymentUrl(),
 								'paymentMopKey'       =>  $paymentKey,
 								'paymentName' 		  => $paymentName,
-								'instalment_net_amount'  => $basket->basketAmount . ' ' . $basket->currency,
+								'instalmentNetAmount'  => $basket->basketAmount . ' ' . $basket->currency,
+								'instalmentCycle'      => $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_cycles'),
+								'recurringPeriod' => $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_recurring_period'),
 								'endcustomername'     => empty(trim($endUserName)) ? $endCustomerName['firstName'] .' '. $endCustomerName['lastName'] : $endUserName
 								]);
                             $contentType = 'htmlContent';   
