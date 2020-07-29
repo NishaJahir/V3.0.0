@@ -529,7 +529,8 @@
                "type":"checkBox",
                "required":false,
                "label":"Config.paymentActiveLabel",
-               "options":{  
+               "options":{
+                  "tooltip":"Config.basicRequirement",
                   "defaultValue":false
                }
             },
