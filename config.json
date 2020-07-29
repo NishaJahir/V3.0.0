@@ -563,7 +563,7 @@
                "required":false,
                "label":"Config.paymentLogoLabel",
                "options":{  
-                  "defaultValue":"images/nn_instalment_invoice.png"
+                  "defaultValue":"images/nn_invoice.png"
                }
             },
             "novalnet_instalment_invoice_payment_action": {
