@@ -96,14 +96,9 @@
 						<div class="col-sm-4 form-control"><b>{{trans("Novalnet::PaymentMethod.loan_amount_text")}} {{instalmentNetAmount}}</b></div>
 						<div class="col-sm-5">
 							<select id="nn_instalment_cycle" type="text" name="nn_instalment_cycle" placeholder="{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}" class="form-control">
-								
-								 <input type="hidden" value="{{instalmentCycles}}">
-								 <input type="hidden" value="{{instalmentNetAmount}}">
-								 <input type="hidden" value="{{recurringPeriod}}">
-								 
+								 <option value="0">{{trans("Novalnet::PaymentMethod.monthOption")}}</option>
 								{% for instalmentCycle in instalmentCycles %}
-								<input type="hidden" value="{{instalmentCycle}} name="test"">
-									<option value="{{instalmentCycle}}">{{ trans("Novalnet::PaymentMethod.instalmentCycle#{instalmentCycle}") }} "/" {{instalmentNetAmount}} {{ trans("Novalnet::PaymentMethod.recurringPeriodEveryMonths#{recurringPeriod}") }}</option>
+						<option value="{{instalmentCycle}}">{{ trans("Novalnet::PaymentMethod.instalmentCycle#{instalmentCycle}") }} / {{instalmentNetAmount}} {{ trans("Novalnet::PaymentMethod.recurringPeriodEveryMonths#{recurringPeriod}") }}</option>
 								{% endfor %}
 							</select>
 						</div>
