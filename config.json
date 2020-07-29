@@ -624,7 +624,7 @@
           "label": "Config.instalmentRecurringPeriodLabel",
           "options": {
              "tooltip":"Config.instalmentRecurringPeriodTooltip",
-            "defaultValue": "0",
+            "defaultValue": "1",
             "selectBoxValues": [
               {
                 "value": "1",
