@@ -99,9 +99,10 @@
 								
 								 <input type="hidden" value="{{instalmentCycles}}">
 								 <input type="hidden" value="{{instalmentNetAmount}}">
-								 <input type="hidden" value="{{instalmentCycles}}">
-								 <option value="0">{{trans("Novalnet::PaymentMethod.monthOption")}}</option>
+								 <input type="hidden" value="{{recurringPeriod}}">
+								 
 								{% for instalmentCycle in instalmentCycles %}
+								<input type="hidden" value="{{instalmentCycle}} name="test"">
 									<option value="{{instalmentCycle}}">{{ trans("Novalnet::PaymentMethod.instalmentCycle{{instalmentCycle}}") }} "/" {{instalmentNetAmount}} {{ trans("Novalnet::PaymentMethod.recurringPeriodEveryMonths{{recurringPeriod}}") }}</option>
 								{% endfor %}
 							</select>
