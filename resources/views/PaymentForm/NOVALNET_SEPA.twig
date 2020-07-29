@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{plugin_path('Novalnet')}}/css/novalnet_ui.css">
-<script src="{{ plugin_path('Novalnet') }}/js/novalnet_sepa.js"></script>
 <script defer src="{{plugin_path('Novalnet')}}/js/novalnet_guarantee_payment.js"></script>
+<script src="{{ plugin_path('Novalnet') }}/js/novalnet_sepa.js"></script>
 
 <form method="post" id="novalnet_form" name="novalnet_form" action="{{nnPaymentProcessUrl}}">
     <input type="hidden" id="paymentKey" name="paymentKey" value="{{paymentMopKey}}" />
@@ -21,7 +21,8 @@
 				<input type="hidden" id="nn_dob_invalid" name="nn_dob_invalid" value="{{trans("Novalnet::PaymentMethod.dobInvalid")}}">
 				<input type="hidden" id="nn_dob_month" name="nn_dob_month" value="{{trans("Novalnet::PaymentMethod.monthOption")}}">
                 <input type="hidden" name="nn_invoice_valid_dob_msg" id="nn_invoice_valid_dob_msg" value="{{trans("Novalnet::PaymentMethod.doberror")}}">
-                <div class="row">
+                {% if paymentMopKey == "NOVALNET_SEPA" %}
+		<div class="row">
                     <div class="col-xs-12">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12">
@@ -67,6 +68,7 @@
 
 						</div> 
                                 {% endif %}
+			 {% endif %}
         </fieldset>
     </div>
     <div class="modal-footer">
@@ -76,3 +78,7 @@
         </button>
     </div>
 </form>
+
+
+
+
