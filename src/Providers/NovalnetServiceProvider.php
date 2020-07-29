@@ -211,7 +211,8 @@ class NovalnetServiceProvider extends ServiceProvider
 							$content = $twig->render('Novalnet::PaymentForm.NOVALNET_SEPA', [
 								'nnPaymentProcessUrl' => $paymentService->getProcessPaymentUrl(),
 								'paymentMopKey'       =>  $paymentKey,
-								'paymentName' 		  => $paymentName,  
+								'paymentName' 		  => $paymentName,
+								'instalment_net_amount'  => $paymentHelper->ConvertAmountToSmallerUnit($basket->basketAmount),
 								'endcustomername'     => empty(trim($endUserName)) ? $endCustomerName['firstName'] .' '. $endCustomerName['lastName'] : $endUserName
 								]);
                             $contentType = 'htmlContent';   
