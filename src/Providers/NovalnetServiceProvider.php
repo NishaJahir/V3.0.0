@@ -206,6 +206,10 @@ class NovalnetServiceProvider extends ServiceProvider
                                        ]);
                             $contentType = 'htmlContent';
                         } elseif(in_array($paymentKey, ['NOVALNET_SEPA', 'NOVALNET_INSTALMENT_INVOICE'])) {
+				$period = $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_recurring_period');
+				$cycle = $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_cycles');
+				$this->getLogger(__METHOD__)->error('period', $period);
+				$this->getLogger(__METHOD__)->error('cycle', $cycle);
 			    			$endUserName = $address->firstName .' '. $address->lastName;
 			    			$endCustomerName = $paymentService->getCustomerName($address);
 							$content = $twig->render('Novalnet::PaymentForm.NOVALNET_SEPA', [
