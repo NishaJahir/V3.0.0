@@ -97,8 +97,8 @@
 						<div class="col-sm-5">
 							<select id="nn_instalment_cycle" type="text" name="nn_instalment_cycle" placeholder="{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}" class="form-control">
 								 <option value="0">{{trans("Novalnet::PaymentMethod.monthOption")}}</option>
-								{% for instalmentCycles in instalmentCycle %}
-									<option value="{{instalmentCycles}}">{{ trans("Novalnet::Config.instalmentCycle{{instalmentCycles}}") }} / {{recurring_month}} {{ trans("Novalnet::Config.recurringPeriodEvery{{recurringPeriod}}Month") }}</option>
+								{% for instalmentCycle in instalmentCycles %}
+									<option value="{{instalmentCycles}}">{{ trans("Novalnet::Config.instalmentCycle") }}{{instalmentCycles}} / {{recurring_month}} {{ trans("Novalnet::Config.recurringPeriodEveryMonth") }}{{recurringPeriod}}</option>
 								{% endfor %}
 							</select>
 						</div>
