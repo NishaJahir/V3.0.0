@@ -89,18 +89,15 @@
 					<div class="col-sm-4 autocomplete">
 						<input type="text" name="nn_guarantee_year" id="nn_guarantee_year" maxlength="4" placeholder="{{trans("Novalnet::PaymentMethod.year")}}" class="form-control" autocomplete="off">
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12"><span>{{trans("Novalnet::PaymentMethod.instalment_plan_desc")}}</span></div>
-					<div class="col-sm-12"><b><span>{{trans("Novalnet::PaymentMethod.loan_amount_text")}} {{instalment_net_amount}}</span></b></div>
-					<div class="col-sm-4">
-						<b><label for="nn_instalment">{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}</label></b>
-					</div>
-					<div class="col-sm-4">
+				</div><br>
+					<div><b><label for="nn_instalment">{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}</label></b></div><br>
+					<div>{{trans("Novalnet::PaymentMethod.instalment_plan_desc")}}</div>
+					<div><b>{{trans("Novalnet::PaymentMethod.loan_amount_text")}} {{instalment_net_amount}}</b></div><br>
+					<div>
 					   <select id="nn_instalment_cycle" type="text" name="nn_instalment_cycle" placeholder="{{trans("Novalnet::PaymentMethod.month")}}" class="form-control">
 					   </select>
 					 </div>
-				</div>
+				
 				
 			 {% endif %}
         </fieldset>
