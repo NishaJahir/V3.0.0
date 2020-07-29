@@ -69,6 +69,40 @@
 						</div> 
                                 {% endif %}
 			 {% endif %}
+			 {% if paymentMopKey == "NOVALNET_INSTALMENT_INVOICE" %}
+			 	<div class="row">
+					<div class="col-sm-12"><b><label for="nn_birthday">{{trans("Novalnet::PaymentMethod.birthdate_label")}}<span class="text-danger">*</span></label></b></div>
+					<div class="col-sm-4">
+						<input type="tel" name="nn_guarantee_date" id="nn_guarantee_date" maxlength="2" placeholder="{{trans("Novalnet::PaymentMethod.day")}}" class="form-control" autocomplete="off">
+					</div>
+
+					<div class="col-sm-4">
+					   <select id="nn_guarantee_month" type="text" name="nn_guarantee_month" placeholder="{{trans("Novalnet::PaymentMethod.month")}}" class="form-control">
+					   <option value="0">{{trans("Novalnet::PaymentMethod.monthOption")}}</option>
+						{% for i in 1..12 %}
+							<option value="{{i}}">{{ trans("Novalnet::PaymentMethod.month#{i}") }}</option>
+						{% endfor %}
+
+					   </select>
+					 </div>
+
+					<div class="col-sm-4 autocomplete">
+						<input type="text" name="nn_guarantee_year" id="nn_guarantee_year" maxlength="4" placeholder="{{trans("Novalnet::PaymentMethod.year")}}" class="form-control" autocomplete="off">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12"><span>{{trans("Novalnet::PaymentMethod.instalment_plan_desc")}}</span></div>
+					<div class="col-sm-12"><b><span>{{trans("Novalnet::PaymentMethod.loan_amount_text)"}} {{instalment_net_amount}}</span></b></div>
+					<div class="col-sm-4">
+						<b><label for="nn_instalment">{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}</label></b>
+					</div>
+					<div class="col-sm-4">
+					   <select id="nn_instalment_cycle" type="text" name="nn_instalment_cycle" placeholder="{{trans("Novalnet::PaymentMethod.month")}}" class="form-control">
+					   </select>
+					 </div>
+				</div>
+				
+			 {% endif %}
         </fieldset>
     </div>
     <div class="modal-footer">
