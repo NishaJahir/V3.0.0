@@ -49,8 +49,12 @@ input[type=submit] {
   color: #ffffff; 
 }
 
-#nn_guarantee_month, #nn_guarantee_date {
+#nn_guarantee_month, #nn_guarantee_date, #nn_instalment_cycle {
 background-color: #f1f1f1;
+}
+
+#nn_instalment_amount {
+  border: 0;
 }
 
 @media screen and (max-width: 575px)
