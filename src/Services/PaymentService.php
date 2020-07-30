@@ -702,9 +702,7 @@ class PaymentService
     }
 	
    public function getPaymentDisplayCondition(Basket $basket, $paymentKey) {
-	// Get payment name in lowercase
-        $paymentKeyLow = strtolower((string) $paymentKey);
-        $paymentActive = $this->config->get('Novalnet.'.$paymentKeyLow.'_payment_active');
+        $paymentActive = $this->config->get('Novalnet.'.$paymentKey.'_payment_active');
         if ($paymentActive == 'true') {
             // Get minimum payment value
             $minimumAmount = $this->paymentHelper->getNovalnetConfig($paymentKeyLow . '_min_amount');
