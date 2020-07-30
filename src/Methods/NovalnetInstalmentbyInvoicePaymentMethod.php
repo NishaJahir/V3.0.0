@@ -97,12 +97,9 @@ class NovalnetInstalmentbyInvoicePaymentMethod extends PaymentMethodBaseService
 	      $this->getLogger(__METHOD__)->error('conf1', 'enter');
 	     $paymentConditionMet =  $this->paymentService->getPaymentDisplayCondition($this->basket, 'novalnet_instalment_invoice');
 	       $this->getLogger(__METHOD__)->error('conf2', $paymentConditionMet);
-	       if ($paymentConditionMet) {
-		    $paymentConditionMet = 'true';
-		       $this->getLogger(__METHOD__)->error('conf', $paymentConditionMet);
-	       }
+	       
 	    
-        return (bool)($this->paymentHelper->paymentActive() && $active_payment_allowed_country && $active_payment_minimum_amount && $active_payment_maximum_amount && $paymentConditionMet);
+        return (bool)($this->paymentHelper->paymentActive() && $active_payment_allowed_country && $active_payment_minimum_amount && $active_payment_maximum_amount);
         } 
         return false;
     
