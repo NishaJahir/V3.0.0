@@ -628,7 +628,7 @@
             "selectBoxValues": [
               {
                 "value": "1",
-                "caption": "Config.recurringPeriodEveryMonth1"
+                "caption": "Config.recurringPeriodEveryMonths1"
               },
               {
                 "value": "2",
