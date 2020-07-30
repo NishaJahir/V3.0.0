@@ -700,6 +700,53 @@ class PaymentService
         } 
         return false;
     }
+	
+   public function getPaymentDisplayCondition(Basket $basket, $paymentKey) {
+	// Get payment name in lowercase
+        $paymentKeyLow = strtolower((string) $paymentKey);
+        $paymentActive = $this->config->get('Novalnet.'.$paymentKeyLow.'_payment_active');
+        if ($paymentActive == 'true') {
+            // Get minimum payment value
+            $minimumAmount = $this->paymentHelper->getNovalnetConfig($paymentKeyLow . '_min_amount');
+            $minimumAmount = ((preg_match('/^[0-9]*$/', $minimumAmount) && $minimumAmount >= '999')  ? $minimumAmount : '999');
+            $amount        = (sprintf('%0.2f', $basket->basketAmount) * 100);
+
+            $billingAddressId = $basket->customerInvoiceAddressId;
+            $billingAddress = $this->addressRepository->findAddressById($billingAddressId);
+            $customerBillingIsoCode = strtoupper($this->countryRepository->findIsoCode($billingAddress->countryId, 'iso_code_2'));
+            $shippingAddressId = $basket->customerShippingAddressId;
+
+            $addressValidation = false;
+            if(!empty($shippingAddressId))
+            {
+                $shippingAddress = $this->addressRepository->findAddressById($shippingAddressId);
+                $customerShippingIsoCode = strtoupper($this->countryRepository->findIsoCode($shippingAddress->countryId, 'iso_code_2'));
+
+                // Billing address
+                $billingAddress = ['street_address' => (($billingAddress->street) ? $billingAddress->street : $billingAddress->address1),
+                                   'city'           => $billingAddress->town,
+                                   'postcode'       => $billingAddress->postalCode,
+                                   'country'        => $customerBillingIsoCode,
+                                  ];
+                // Shipping address
+                $shippingAddress = ['street_address' => (($shippingAddress->street) ? $shippingAddress->street : $shippingAddress->address1),
+                                    'city'           => $shippingAddress->town,
+                                    'postcode'       => $shippingAddress->postalCode,
+                                    'country'        => $customerShippingIsoCode,
+                                   ];
+
+             }
+             else
+             {
+                 $addressValidation = true;
+             }
+            // Check the payment condition
+            if ((((int) $amount >= (int) $minimumAmount && in_array($customerBillingIsoCode, ['DE', 'AT', 'CH']) && $basket->currency == 'EUR' && ($addressValidation || ($billingAddress === $shippingAddress))))) {
+                return true;
+            }
+        }
+	return false;   
+   }
     
     /**
      * Get database values
