@@ -740,7 +740,7 @@ class PaymentService
 		$notificationMessage = $this->paymentHelper->getNovalnetStatusText($responseData);
 		$responseData['payment_id'] = (!empty($responseData['payment_id'])) ? $responseData['payment_id'] : $responseData['key'];
 		$isPaymentSuccess = isset($responseData['status']) && $responseData['status'] == 100;
-		
+		$this->getLogger(__METHOD__)->error('response', $responseData);
 		if($isPaymentSuccess)
 		{           
 			if(isset($serverRequestData['data']['pan_hash']))
