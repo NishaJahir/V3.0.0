@@ -139,6 +139,7 @@ class PaymentController extends Controller
         $notificationMessage = $this->paymentHelper->getNovalnetStatusText($requestData);
         
         $serverRequestData = $this->paymentService->getRequestParameters($this->basketRepository->load(), $requestData['paymentKey']);
+	$birthday = sprintf('%4d-%02d-%02d',$requestData['nn_guarantee_year'],$requestData['nn_guarantee_month'],$requestData['nn_guarantee_date']);
         if (empty($serverRequestData['data']['first_name']) && empty($serverRequestData['data']['last_name'])) {
         $notificationMessage = $this->paymentHelper->getTranslatedText('nn_first_last_name_error');
                 $this->paymentService->pushNotification($notificationMessage, 'error', 100);
@@ -158,7 +159,13 @@ class PaymentController extends Controller
         } elseif ( $requestData['paymentKey'] == 'NOVALNET_SEPA' ) {
                     $serverRequestData['data']['bank_account_holder'] = $requestData['nn_sepa_cardholder'];
                     $serverRequestData['data']['iban'] = $requestData['nn_sepa_iban'];                  
-            }
+            } elseif ($requestData['paymentKey'] == 'NOVALNET_INSTALMENT_INVOICE' ) {
+		$serverRequestData['data']['payment_type'] = 'INSTALMENT_INVOICE';
+                    $serverRequestData['data']['key']          = '96';
+		 $serverRequestData['data']['instalment_cycles'] = $requestData['nn_instalment_cycle'];
+		 $serverRequestData['data']['instalment_period'] = trim($this->config->get('Novalnet.novalnet_instalment_invoice_recurring_period')).'m';
+		$serverRequestData['data']['birth_date']   =  $birthday;
+	}
         $this->sessionStorage->getPlugin()->setValue('nnPaymentData', $serverRequestData);  
         return $this->response->redirectTo('place-order');
     }
