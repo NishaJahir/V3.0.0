@@ -480,14 +480,13 @@ class PaymentService
     */
     public function getpaymentUrl($paymentKey)
     {
-        $payment = [
-            'NOVALNET_INVOICE' => NovalnetConstants::PAYPORT_URL,
-            'NOVALNET_CC'      => NovalnetConstants::PAYPORT_URL,
-            'NOVALNET_SEPA'    => NovalnetConstants::PAYPORT_URL,
-            'NOVALNET_PAYPAL'  => NovalnetConstants::PAYPAL_PAYMENT_URL
-        ];
+	    if (in_array($paymentKey, ['NOVALNET_INVOICE', 'NOVALNET_CC','NOVALNET_SEPA', 'NOVALNET_INSTALMENT_INVOICE' ])) {
+		 $paymentUrl = NovalnetConstants::PAYPORT_URL;   
+	    } else {
+		 $paymentUrl = NovalnetConstants::PAYPAL_PAYMENT_URL;       
+	    }
 
-        return $payment[$paymentKey];
+        return $paymentUrl;
     }
 
    /**
