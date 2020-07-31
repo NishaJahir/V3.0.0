@@ -166,6 +166,7 @@ class PaymentController extends Controller
 		 $serverRequestData['data']['instalment_period'] = trim($this->config->get('Novalnet.novalnet_instalment_invoice_recurring_period')).'m';
 		$serverRequestData['data']['birth_date']   =  $birthday;
 	}
+	    $this->getLogger(__METHOD__)->error('request', $serverRequestData);
         $this->sessionStorage->getPlugin()->setValue('nnPaymentData', $serverRequestData);  
         return $this->response->redirectTo('place-order');
     }
