@@ -1,8 +1,23 @@
+{% if paymentDetails is not empty %}
 <div class="row">
-    <strong class="col-6 col-sm-5"></strong>
-    <span class="col-6 col-sm-7">{{comments|raw}}</span>
+        <strong class="col-6 col-sm-5">{{trans("Novalnet::PaymentMethod.novalnet_details")}}</strong> 
+        <span id="nnReferenceId" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.nn_tid")}} {{paymentDetails.tid}}</span>
+    {% if paymentDetails.test_mode is not empty%}
+        <span id="nnTestMode" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.test_order")}}</span><br>
+    {% endif %}
+    {% if bankDetails is not empty %}
+        <span id="nnAmountTransferText" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.transfer_amount_text")}}</span>
+        <span id="nnAccountHolder" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.account_holder_novalnet")}} {{bankDetails.invoice_account_holder}}</span>
+        <span id="nnAccountIban" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.iban")}} {{bankDetails.invoice_iban}}</span>
+        <span id="nnAccountBic" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.bic")}} {{bankDetails.invoice_bic}}</span>
+        <span id="nnDueDate" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.due_date")}} {{bankDetails.due_date}}</span>
+        <span id="nnBankNamePlace" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.bank")}} {{bankDetails.invoice_bankname}} {{bankDetails.invoice_bankname}}</span>
+        <span id="nnOrderAmount" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.amount")}} {{bankDetails.amount}} {{bankDetails.currency}}</span><br>
+        <span id="nnReferenceText" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.any_one_reference_text")}}</span>
+        <span id="nnReference1" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.payment_reference1")}}  'BNR-'{{bankDetails.product_id}}-{{bankDetails.order_no}}</span>
+        <span id="nnReference2" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.payment_reference2")}} 'TID' {{bankDetails.tid}}</span>
+    {% endif %}
 </div>
-
-
+{% endif %}
 
 
