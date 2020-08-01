@@ -196,15 +196,24 @@ class NovalnetServiceProvider extends ServiceProvider
                            }
                         } 
 			     elseif(in_array($paymentKey, ['NOVALNET_CC', 'NOVALNET_SEPA', 'NOVALNET_INSTALMENT_INVOICE'])) {
-				
-			    			
+				$encodedKey = base64_encode('vendor='.$paymentHelper->getNovalnetConfig('novalnet_vendor_id').'&product='.$paymentHelper->getNovalnetConfig('novalnet_product_id').'&server_ip='.$paymentHelper->getServerAddress().'&lang='.$sessionStorage->getLocaleSettings()->language);
+			    	$endUserName = $address->firstName .' '. $address->lastName;
+				$endCustomerName = $paymentService->getCustomerName($address);		
+				     
 							$content = $twig->render('Novalnet::PaymentForm.NOVALNET_PAYMENT_FORM', [
 								'nnPaymentProcessUrl' => $paymentService->getProcessPaymentUrl(),
 								'paymentMopKey'       =>  $paymentKey,
-								'paymentName' 		  => $paymentName
+								'paymentName' 		  => $paymentName,
+								'nnCcFormUrl'           => 'https://secure.novalnet.de/cc?api=' . $encodedKey,
+								'nnFormDesign'          =>  $paymentService->getCcDesignConfig(),
+								'endcustomername'     => empty(trim($endUserName)) ? $endCustomerName['firstName'] .' '. $endCustomerName['lastName'] : $endUserName
+								'instalmentNetAmount'  => $basket->basketAmount,
+								'orderCurrency' => $basket->currency,
+								'recurringPeriod'      => $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_recurring_period'),
+								'instalmentCycles' => explode(',', $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_cycles') )
 							]);
-								if($paymentKey == 'NOVALNET_CC') {
-								$encodedKey = base64_encode('vendor='.$paymentHelper->getNovalnetConfig('novalnet_vendor_id').'&product='.$paymentHelper->getNovalnetConfig('novalnet_product_id').'&server_ip='.$paymentHelper->getServerAddress().'&lang='.$sessionStorage->getLocaleSettings()->language);
+								
+								
 								$content['nnCcFormUrl'] = 'https://secure.novalnet.de/cc?api=' . $encodedKey;
 								$content['nnFormDesign'] =  $paymentService->getCcDesignConfig();
 								} 
