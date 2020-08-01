@@ -68,7 +68,7 @@
 
 						</div> 
                                 {% endif %}
-			 {% endif %}
+			
 			 {% elseif paymentMopKey == "NOVALNET_INSTALMENT_INVOICE" %}
 			 	<div class="row">
 					<div class="col-sm-12"><b><label for="nn_birthday">{{trans("Novalnet::PaymentMethod.birthdate_label")}}<span class="text-danger">*</span></label></b></div>
@@ -108,7 +108,7 @@
 					</div>
 				
 				
-			 {% endif %}
+			
 			 {% elseif paymentMopKey == "NOVALNET_CC" %}
 			 <script src="{{ plugin_path('Novalnet') }}/js/novalnet_cc.js"></script>
 			<input type="hidden" id="nn_cc_standard_style_label" value="{{nnFormDesign['standard_style_label']}}" />
