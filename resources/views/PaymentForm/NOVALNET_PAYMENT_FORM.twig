@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{plugin_path('Novalnet')}}/css/novalnet_ui.css">
 <script defer src="{{plugin_path('Novalnet')}}/js/novalnet_guarantee_payment.js"></script>
 <script src="{{ plugin_path('Novalnet') }}/js/novalnet_sepa.js"></script>
+<script src="{{ plugin_path('Novalnet') }}/js/novalnet_cc.js"></script>
 
 <form method="post" id="novalnet_form" name="novalnet_form" action="{{nnPaymentProcessUrl}}">
     <input type="hidden" id="paymentKey" name="paymentKey" value="{{paymentMopKey}}" />
@@ -110,7 +111,7 @@
 				
 			
 			 {% elseif paymentMopKey == "NOVALNET_CC" %}
-			 <script src="{{ plugin_path('Novalnet') }}/js/novalnet_cc.js"></script>
+			 
 			<input type="hidden" id="nn_cc_standard_style_label" value="{{nnFormDesign['standard_style_label']}}" />
 			<input type="hidden" id="nn_cc_standard_style_input" value="{{nnFormDesign['standard_style_input']}}" />
 			<input type="hidden" id="nn_cc_standard_style_css" value="{{nnFormDesign['standard_style_css']}}" />
