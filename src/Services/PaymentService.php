@@ -533,9 +533,9 @@ class PaymentService
     public function getCcDesignConfig()
     {
         return [
-            'standard_style_label' => $this->paymentHelper->getNovalnetConfig('novalnet_cc_standard_style_label'),
-            'standard_style_input' => $this->paymentHelper->getNovalnetConfig('novalnet_cc_standard_style_field'),
-            'standard_style_css' => $this->paymentHelper->getNovalnetConfig('novalnet_cc_standard_style_css'),
+            'standardStyleLabel' => $this->paymentHelper->getNovalnetConfig('novalnet_cc_standard_style_label'),
+            'standardStyleInput' => $this->paymentHelper->getNovalnetConfig('novalnet_cc_standard_style_field'),
+            'standardStyleCss' => $this->paymentHelper->getNovalnetConfig('novalnet_cc_standard_style_css'),
         ];
     }
     
