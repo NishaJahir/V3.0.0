@@ -1,10 +1,10 @@
 $(document).ready( function() {
-    var current_date = new Date();      
-    var max_year = current_date.getFullYear() - 18;
-    var min_year = current_date.getFullYear() - 91;    
+    var currentDate = new Date();      
+    var maxYear = currentDate.getFullYear() - 18;
+    var minYear = currentDate.getFullYear() - 91;    
     var  userAgent = navigator.userAgent || navigator.vendor || window.opera;
     
-    $("#nn_guarantee_date").on("keypress textInput",function (e)
+    $("#nnBirthdayDate").on("keypress textInput",function (e)
     {
         var keyCode = e.which || e.originalEvent.data.charCodeAt(0);
         var expr = String.fromCharCode(keyCode);  
@@ -12,34 +12,34 @@ $(document).ready( function() {
         {			
           e.preventDefault();
         }
-            var day_val = $('#nn_guarantee_date').val();
-            if( day_val.length == 1 ) {
-                    if( (expr > -1 && day_val.charAt(0) > 3) || (expr == 0 && day_val.charAt(0) == 0) || (expr > 1 && day_val.charAt(0) == 3) )  {
+            var dayVal = $('#nnBirthdayDate').val();
+            if( dayVal.length == 1 ) {
+                    if( (expr > -1 && dayVal.charAt(0) > 3) || (expr == 0 && dayVal.charAt(0) == 0) || (expr > 1 && dayVal.charAt(0) == 3) )  {
                     return false;
                 }
             }        
     });
     
-    $('#nn_guarantee_date').on('blur', function() {
-		var date, updated_date;
-		updated_date = date = $('#nn_guarantee_date').val();
+    $('#nnBirthdayDate').on('blur', function() {
+		var date, updatedDate;
+		updatedDate = date = $('#nnBirthdayDate').val();
 		if (date != '0' && date != '' && date.length < 2) {
-			 updated_date = "0"+ date;         
+			 updatedDate = "0"+ date;         
 		} else if (date == '0') {
-			updated_date = date.replace('0', '01');        
+			updatedDate = date.replace('0', '01');        
 		} 
-		$('#nn_guarantee_date').val(updated_date);
+		$('#nnBirthdayDate').val(updatedDate);
     });      
     
-    $("#nn_guarantee_year").on("input", function(e) {      
-        var year_val = $(this).val();
-        var year_len = year_val.length;
-        let maximum_year = parseInt( max_year.toString().substring( 0 ,year_len ) );
-        let minimum_year = parseInt( min_year.toString().substring( 0 ,year_len ) );        
-        let user_val = year_val.substring( 0, year_len );               
+    $("#nnBirthdayYear").on("input", function(e) {      
+        var yearVal = $(this).val();
+        var yearLen = yearVal.length;
+        let maximumYear = parseInt( maxYear.toString().substring( 0 ,yearLen ) );
+        let minimumYear = parseInt( minYear.toString().substring( 0 ,yearLen ) );        
+        let userVal = yearVal.substring( 0, yearLen );               
         if( e.keyCode != 8 || e.keyCode != 46 ) {        
-                    if( user_val > maximum_year || user_val <  minimum_year || isNaN(user_val) )  {        
-                $(this).val( year_val.substring( 0, year_len - 1 ) );
+                    if( userVal > maximumYear || userVal <  minimumYear || isNaN(userVal) )  {        
+                $(this).val( yearVal.substring( 0, yearLen - 1 ) );
                 e.preventDefault();
               e.stopImmediatePropagation();
               return false;
@@ -49,11 +49,11 @@ $(document).ready( function() {
         });
 
     
-    function yearAutocomplete(input_val, array_year) {
+    function yearAutocomplete(inputVal, arrayYear) {
  
       var currentFocus;
   
-      input_val.addEventListener("input", function(e) {
+      inputVal.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
      
       closeAllLists();
@@ -66,17 +66,17 @@ $(document).ready( function() {
       
       this.parentNode.appendChild(a);
       var count = 1;
-      for (i = 0; i < array_year.length; i++) {     
+      for (i = 0; i < arrayYear.length; i++) {     
         var regex = new RegExp( val, 'g' );
-        if (array_year[i].match(regex)) {   
+        if (arrayYear[i].match(regex)) {   
       if( count == 10 ) {
        break;
       }
           b = document.createElement("div");
-          b.innerHTML = array_year[i].replace( val,"<strong>" + val + "</strong>" );          
-          b.innerHTML += "<input type='hidden' class='year_active' value='" + array_year[i] + "'>";
+          b.innerHTML = arrayYear[i].replace( val,"<strong>" + val + "</strong>" );          
+          b.innerHTML += "<input type='hidden' class='yearActive' value='" + arrayYear[i] + "'>";
           b.addEventListener("click", function(e) {
-              input_val.value = this.getElementsByTagName("input")[0].value;
+              inputVal.value = this.getElementsByTagName("input")[0].value;
               closeAllLists();
           });
           a.appendChild(b);
@@ -85,7 +85,7 @@ $(document).ready( function() {
       }
   });
   
-      input_val.addEventListener("keydown", function(e) {
+      inputVal.addEventListener("keydown", function(e) {
           var x = document.getElementById(this.id + "autocomplete-list");
           if (x) x = x.getElementsByTagName("div");
           if (e.keyCode == 40) {
@@ -108,7 +108,7 @@ $(document).ready( function() {
         if (currentFocus < 0) currentFocus = (x.length - 1);
         x[currentFocus].classList.add("autocomplete-active");
     var elements = $(x[currentFocus]);      
-        $('#nn_guarantee_year').val( $('.year_active', elements).val() );
+        $('#nnBirthdayYear').val( $('.yearActive', elements).val() );
       }
       function removeActiveValue(x) {
         for (var i = 0; i < x.length; i++) {
@@ -118,7 +118,7 @@ $(document).ready( function() {
       function closeAllLists(elmnt) {
         var x = document.getElementsByClassName("autocomplete-items");
         for (var i = 0; i < x.length; i++) {
-          if (elmnt != x[i] && elmnt != input_val) {
+          if (elmnt != x[i] && elmnt != inputVal) {
             x[i].parentNode.removeChild(x[i]);
           }
         }
@@ -129,37 +129,37 @@ $(document).ready( function() {
       });
     }
 
-    var year_range = [];
+    var yearRange = [];
     
-    for( var year = max_year; year >= min_year; year-- ) {              
-        year_range.push('' + year + '');
+    for( var year = maxYear; year >= minYear; year-- ) {              
+        yearRange.push('' + year + '');
     }
 
-    yearAutocomplete(document.getElementById("nn_guarantee_year"), year_range);
+    yearAutocomplete(document.getElementById("nnBirthdayYear"), yearRange);
     
     
-    $('#novalnet_form').on('submit', function() {
-    $('#novalnet_form_btn').attr('disabled',true);
-        if ( $("#nn_guarantee_year").val() == '' || $("#nn_guarantee_date").val() == '' ) {
-        alert($("#nn_dob_empty").val());
-        $('#novalnet_form_btn').attr('disabled',false);
+    $('#novalnetForm').on('submit', function() {
+    $('#novalnetFormBtn').attr('disabled',true);
+        if ( $("#nnBirthdayYear").val() == '' || $("#nnBirthdayDate").val() == '' ) {
+        alert($("#nnDobEmpty").val());
+        $('#novalnetFormBtn').attr('disabled',false);
         return false;
         }
         
-        if($("#nn_guarantee_month").val() == '0' ) {
-        alert($("#nn_dob_invalid").val());
-        $('#novalnet_form_btn').attr('disabled',false);
+        if($("#nnBirthdayMonth").val() == '0' ) {
+        alert($("#nnDobInvalid").val());
+        $('#novalnetFormBtn').attr('disabled',false);
             return false;
         }
     
-        return isActualDate($("#nn_guarantee_month").val(), $("#nn_guarantee_date").val(), $("#nn_guarantee_year").val());
+        return isActualDate($("#nnBirthdayMonth").val(), $("#nnBirthdayDate").val(), $("#nnBirthdayYear").val());
         });
     
         function isActualDate (month, day, year) {
             var tempDate = new Date(year, --month, day);
-            if( month !== tempDate.getMonth() || $("#nn_guarantee_year").val().length < 4) {
-                alert($("#nn_dob_invalid").val());
-                $('#novalnet_form_btn').attr('disabled',false);
+            if( month !== tempDate.getMonth() || $("#nnBirthdayYear").val().length < 4) {
+                alert($("#nnDobInvalid").val());
+                $('#novalnetFormBtn').attr('disabled',false);
                 return false;
             }
             return true;
