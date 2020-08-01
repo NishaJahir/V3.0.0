@@ -206,28 +206,12 @@ class NovalnetServiceProvider extends ServiceProvider
 								'paymentName' 		  => $paymentName,
 								'nnCcFormUrl'           => 'https://secure.novalnet.de/cc?api=' . $encodedKey,
 								'nnFormDesign'          =>  $paymentService->getCcDesignConfig(),
-								'endcustomername'     => empty(trim($endUserName)) ? $endCustomerName['firstName'] .' '. $endCustomerName['lastName'] : $endUserName
+								'endcustomername'     => empty(trim($endUserName)) ? $endCustomerName['firstName'] .' '. $endCustomerName['lastName'] : $endUserName,
 								'instalmentNetAmount'  => $basket->basketAmount,
 								'orderCurrency' => $basket->currency,
 								'recurringPeriod'      => $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_recurring_period'),
 								'instalmentCycles' => explode(',', $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_cycles') )
-							]);
-								
-								
-								$content['nnCcFormUrl'] = 'https://secure.novalnet.de/cc?api=' . $encodedKey;
-								$content['nnFormDesign'] =  $paymentService->getCcDesignConfig();
-								} 
-								elseif($paymentKey == 'NOVALNET_SEPA') {
-								$endUserName = $address->firstName .' '. $address->lastName;
-			    					$endCustomerName = $paymentService->getCustomerName($address);
-								$content['endcustomername'] = empty(trim($endUserName)) ? $endCustomerName['firstName'] .' '. $endCustomerName['lastName'] : $endUserName;
-								} else {
-								$content['instalmentNetAmount']  = $basket->basketAmount;
-								$content['orderCurrency'] = $basket->currency;
-								$content['recurringPeriod'] = $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_recurring_period');
-								$content['instalmentCycles'] = explode(',', $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_cycles') );
-								}
-								
+							]);	
 								
                             $contentType = 'htmlContent';   
                         } else {
