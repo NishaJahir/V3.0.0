@@ -111,7 +111,8 @@
 				
 			
 			 {% elseif paymentMopKey == "NOVALNET_CC" %}
-			 
+			  <input type="hidden" id="nn_pan_hash" name="nn_pan_hash" />
+   			 <input type="hidden" id="nn_unique_id" name="nn_unique_id" />
 			<input type="hidden" id="nn_cc_standard_style_label" value="{{nnFormDesign['standard_style_label']}}" />
 			<input type="hidden" id="nn_cc_standard_style_input" value="{{nnFormDesign['standard_style_input']}}" />
 			<input type="hidden" id="nn_cc_standard_style_css" value="{{nnFormDesign['standard_style_css']}}" />
