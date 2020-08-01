@@ -90,7 +90,7 @@ class NovalnetOrderConfirmationDataProvider
                     $comment .= (string) $comments;
                     $comment .= PHP_EOL;
         }   
-                  return $twig->render('Novalnet::NovalnetOrderHistory', ['bankDetails' => $bankDetails]);
+                  return $twig->render('Novalnet::NovalnetOrderHistory', ['bankDetails' => $bankDetails, 'paymentDetails' => $db_details]);
     }
 }
 
