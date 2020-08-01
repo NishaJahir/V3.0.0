@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{plugin_path('Novalnet')}}/css/novalnetUi.css">
-<script defer src="{{plugin_path('Novalnet')}}/js/novalnetGuaranteePayment.js"></script>
+<script defer src="{{plugin_path('Novalnet')}}/js/novalnetBirthdayValidation.js"></script>
 <script src="{{ plugin_path('Novalnet') }}/js/novalnetPaymentForm.js"></script>
 
 <input type="hidden" id="nnCcStandardStyleLabel" value="{{nnFormDesign['standardStyleLabel']}}" />
@@ -50,10 +50,10 @@
 			<div class="row">
 				<div class="col-sm-12"><b><label for="nnBirthday">{{trans("Novalnet::PaymentMethod.birthdate_label")}}<span class="text-danger">*</span></label></b></div>
 				<div class="col-sm-4">
-					<input type="tel" name="nnGuaranteeDate" id="nnGuaranteeDate" maxlength="2" placeholder="{{trans("Novalnet::PaymentMethod.day")}}" class="form-control" autocomplete="off">
+					<input type="tel" name="nnBirthdayDate" id="nnBirthdayDate" maxlength="2" placeholder="{{trans("Novalnet::PaymentMethod.day")}}" class="form-control" autocomplete="off">
 				</div>
 				<div class="col-sm-4">
-				   <select id="nnGuaranteeMonth" type="text" name="nnGuaranteeMonth" placeholder="{{trans("Novalnet::PaymentMethod.month")}}" class="form-control">
+				   <select id="nnBirthdayMonth" type="text" name="nnBirthdayMonth" placeholder="{{trans("Novalnet::PaymentMethod.month")}}" class="form-control">
 				   <option value="0">{{trans("Novalnet::PaymentMethod.monthOption")}}</option>
 					{% for i in 1..12 %}
 						<option value="{{i}}">{{ trans("Novalnet::PaymentMethod.month#{i}") }}</option>
@@ -62,7 +62,7 @@
 				   </select>
 				 </div>
 				<div class="col-sm-4 autocomplete">
-					<input type="text" name="nnGuaranteeYear" id="nnGuaranteeYear" maxlength="4" placeholder="{{trans("Novalnet::PaymentMethod.year")}}" class="form-control" autocomplete="off">
+					<input type="text" name="nnBirthdayYear" id="nnBirthdayYear" maxlength="4" placeholder="{{trans("Novalnet::PaymentMethod.year")}}" class="form-control" autocomplete="off">
 				</div>
 			</div><br>
 				<div><b><label for="nnInstalment" style="color:#008ebd;">{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}</label></b></div>
