@@ -93,7 +93,7 @@
 					<div><b><label for="nn_instalment" style="color:#008ebd;">{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}</label></b></div>
 					<div>{{trans("Novalnet::PaymentMethod.instalment_plan_desc")}}</div>
 					<div class="row">
-						<div class="col-sm-3 form-control" id="nn_instalment_amount" name="nn_instalment_amount"><b>{{trans("Novalnet::PaymentMethod.loan_amount_text")}} {{instalmentNetAmount}}</b></div>
+						<div class="col-sm-3 form-control" id="nn_instalment_amount" name="nn_instalment_amount"><b>{{trans("Novalnet::PaymentMethod.loan_amount_text")}} {{instalmentNetAmount}} {{orderCurrency}}</b></div>
 						{% if instalmentCycles is not empty %}
 						<div class="col-sm-5">
 							<select id="nn_instalment_cycle" type="text" name="nn_instalment_cycle" placeholder="{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}" class="form-control">
