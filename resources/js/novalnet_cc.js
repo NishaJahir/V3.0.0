@@ -67,7 +67,7 @@ window.addEventListener(
             } else {
         $('#nn_pan_hash').val(data['hash']);
                 $('#nn_unique_id').val(data['unique_id']);
-                $('#nn_cc_form').submit();
+                $('#novalnet_form').submit();
             }
         }
 
