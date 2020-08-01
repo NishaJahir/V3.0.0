@@ -200,7 +200,7 @@ class NovalnetServiceProvider extends ServiceProvider
 			    	$endUserName = $address->firstName .' '. $address->lastName;
 				$endCustomerName = $paymentService->getCustomerName($address);		
 				     
-							$content = $twig->render('Novalnet::PaymentForm.NOVALNET_PAYMENT_FORM', [
+							$content = $twig->render('Novalnet::PaymentForm.NovalnetPaymentForm', [
 								'nnPaymentProcessUrl' => $paymentService->getProcessPaymentUrl(),
 								'paymentMopKey'       =>  $paymentKey,
 								'paymentName' 		  => $paymentName,
