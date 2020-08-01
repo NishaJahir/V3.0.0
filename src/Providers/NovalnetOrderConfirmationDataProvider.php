@@ -82,14 +82,15 @@ class NovalnetOrderConfirmationDataProvider
                     }
                     
                     if(in_array($tid_status, ['91', '100']) && ($db_details['payment_id'] == '27' && ($transaction_details->amount > $totalCallbackAmount) ) ) {
-                        $comments .= PHP_EOL . $paymentService->getInvoicePrepaymentComments($db_details);
+                        //$bankDetails .= PHP_EOL . $paymentService->getInvoicePrepaymentComments($db_details);
+                        $bankDetails = $db_details;
                     }
                 }
             }
                     $comment .= (string) $comments;
                     $comment .= PHP_EOL;
         }   
-                  return $twig->render('Novalnet::NovalnetOrderHistory', ['comments' => html_entity_decode($comment)]);
+                  return $twig->render('Novalnet::NovalnetOrderHistory', ['bankDetails' => $bankDetails]);
     }
 }
 
