@@ -49,11 +49,11 @@ input[type=submit] {
   color: #ffffff; 
 }
 
-#nn_guarantee_month, #nn_guarantee_date, #nn_instalment_cycle {
+#nnBirthdayMonth, #nnBirthdayDate, #nnInstalmentCycle {
 background-color: #f1f1f1;
 }
 
-#nn_instalment_amount {
+#nnInstalmentAmount {
   border: 0;
 }
 
@@ -62,7 +62,7 @@ background-color: #f1f1f1;
 width:100%;
 }
 
-#novalnet_form .modal-body .form-control {
+#novalnetForm .modal-body .form-control {
 margin-top: 14px;
 }
 
