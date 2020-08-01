@@ -33,7 +33,7 @@
 								<label for="sepaHolder">{{trans("Novalnet::PaymentMethod.sepa_account_holder_label")}}*</label>
 							</div>
 							<div data-model="nn_sepa_birthday" class="input-unit">
-								<input type="text" name="nn_sepa_iban" autocomplete="off" id="nn_sepa_iban">
+								<input type="text" name="nnSepaIban" autocomplete="off" id="nnSepaIban">
 								<label for="sepaIban">{{trans("Novalnet::PaymentMethod.sepa_iban_label")}}*</label>
 							</div>
 							<a href="#ibanDetails" data-toggle="collapse">{{trans("Novalnet::PaymentMethod.ibanMandate")}}</a>
@@ -82,11 +82,11 @@
 				</div>
 				
 		 {% elseif paymentMopKey == "NOVALNET_CC" %}
-			<input type="hidden" id="nn_pan_hash" name="nn_pan_hash" />
-			<input type="hidden" id="nn_unique_id" name="nn_unique_id" />
+			<input type="hidden" id="nnPanHash" name="nnPanHash" />
+			<input type="hidden" id="nnUniqueId" name="nnUniqueId" />
 			<div class="modal-body form-horizontal">
 				<div class="row">
-					<iframe id="nn_iframe" src="{{nnCcFormUrl}}" frameborder="0" onload="initIframe()" scrolling="no" width="100%"></iframe>
+					<iframe id="nnIframe" src="{{nnCcFormUrl}}" frameborder="0" onload="initIframe()" scrolling="no" width="100%"></iframe>
 				</div> 
 			</div>
 		 {% endif %}
