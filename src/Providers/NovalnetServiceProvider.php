@@ -194,34 +194,32 @@ class NovalnetServiceProvider extends ServiceProvider
                                         $content = '';
                                         $contentType = 'continue';
                            }
-                        } elseif ($paymentKey == 'NOVALNET_CC') { # Credit Card
-                            $encodedKey = base64_encode('vendor='.$paymentHelper->getNovalnetConfig('novalnet_vendor_id').'&product='.$paymentHelper->getNovalnetConfig('novalnet_product_id').'&server_ip='.$paymentHelper->getServerAddress().'&lang='.$sessionStorage->getLocaleSettings()->language);
-                            $nnIframeSource = 'https://secure.novalnet.de/cc?api=' . $encodedKey;
-                            $content = $twig->render('Novalnet::PaymentForm.NOVALNET_CC', [
-                                'nnCcFormUrl'           => $nnIframeSource,
-                                'nnPaymentProcessUrl'   => $paymentService->getProcessPaymentUrl(),
-                                'paymentMopKey'         =>  $paymentKey,
-                                'paymentName' 			=> $paymentName,
-                                'nnFormDesign'          =>  $paymentService->getCcDesignConfig()
-                                       ]);
-                            $contentType = 'htmlContent';
-                        } elseif(in_array($paymentKey, ['NOVALNET_SEPA', 'NOVALNET_INSTALMENT_INVOICE'])) {
-				$period = $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_recurring_period');
-				$cycle = explode(',', $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_cycles'));
-				$this->getLogger(__METHOD__)->error('period', $period);
-				$this->getLogger(__METHOD__)->error('cycle', $cycle);
-			    			$endUserName = $address->firstName .' '. $address->lastName;
-			    			$endCustomerName = $paymentService->getCustomerName($address);
-							$content = $twig->render('Novalnet::PaymentForm.NOVALNET_SEPA', [
+                        } 
+			     elseif(in_array($paymentKey, ['NOVALNET_CC', 'NOVALNET_SEPA', 'NOVALNET_INSTALMENT_INVOICE'])) {
+				
+			    			
+							$content = $twig->render('Novalnet::PaymentForm.NOVALNET_PAYMENT_FORM', [
 								'nnPaymentProcessUrl' => $paymentService->getProcessPaymentUrl(),
 								'paymentMopKey'       =>  $paymentKey,
-								'paymentName' 		  => $paymentName,
-								'instalmentNetAmount'  => $basket->basketAmount,
-								'orderCurrency' => $basket->currency,
-								'recurringPeriod'      => $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_recurring_period'),
-								'instalmentCycles' => explode(',', $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_cycles') ),
-								'endcustomername'     => empty(trim($endUserName)) ? $endCustomerName['firstName'] .' '. $endCustomerName['lastName'] : $endUserName
-								]);
+								'paymentName' 		  => $paymentName
+							]);
+								if($paymentKey == 'NOVALNET_CC') {
+								$encodedKey = base64_encode('vendor='.$paymentHelper->getNovalnetConfig('novalnet_vendor_id').'&product='.$paymentHelper->getNovalnetConfig('novalnet_product_id').'&server_ip='.$paymentHelper->getServerAddress().'&lang='.$sessionStorage->getLocaleSettings()->language);
+								$content['nnCcFormUrl'] = 'https://secure.novalnet.de/cc?api=' . $encodedKey;
+								$content['nnFormDesign'] =  $paymentService->getCcDesignConfig();
+								} 
+								elseif($paymentKey == 'NOVALNET_SEPA') {
+								$endUserName = $address->firstName .' '. $address->lastName;
+			    					$endCustomerName = $paymentService->getCustomerName($address);
+								$content['endcustomername'] = empty(trim($endUserName)) ? $endCustomerName['firstName'] .' '. $endCustomerName['lastName'] : $endUserName;
+								} else {
+								$content['instalmentNetAmount']  = $basket->basketAmount;
+								$content['orderCurrency'] = $basket->currency;
+								$content['recurringPeriod'] = $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_recurring_period');
+								$content['instalmentCycles'] = explode(',', $paymentHelper->getNovalnetConfig(strtolower($paymentKey) . '_cycles') );
+								}
+								
+								
                             $contentType = 'htmlContent';   
                         } else {
 							// Handling the without form payment and redirection payment
