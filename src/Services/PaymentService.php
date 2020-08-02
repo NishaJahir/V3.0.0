@@ -724,7 +724,9 @@ class PaymentService
     public function getDatabaseValues($orderId) {
         $database = pluginApp(DataBase::class);
         $transaction_details = $database->query(TransactionLog::class)->where('orderNo', '=', $orderId)->get();
+	    $this->getLogger(__METHOD__)->error('transaction2345', $transaction_details);
         if (!empty($transaction_details)) {
+		$this->getLogger(__METHOD__)->error('transaction234545465', $transaction_details);
         //Typecasting object to array
         $transaction_details = (array)($transaction_details[0]);
         $transaction_details['order_no'] = $transaction_details['orderNo'];
