@@ -94,10 +94,12 @@ class NovalnetInstalmentbyInvoicePaymentMethod extends PaymentMethodBaseService
 	    if (!empty($maximum_amount) && is_numeric($maximum_amount)) {
 		$active_payment_maximum_amount = $this->paymentService->getMaxBasketAmount($this->basket, $maximum_amount);
 		}
-	    $active_payment_condition_status = $this->paymentService->getPaymentConditionStaus($this->basket, 'novalnet_instalment_invoice');
+	       
+	    //$active_payment_condition_status = $this->paymentService->getPaymentConditionStaus($this->basket, 'novalnet_instalment_invoice');
+	       
 	       
 	    
-        return (bool)($this->paymentHelper->paymentActive() && $active_payment_allowed_country && $active_payment_minimum_amount && $active_payment_maximum_amount && $active_payment_condition_status);
+        return (bool)($this->paymentHelper->paymentActive() && $active_payment_allowed_country && $active_payment_minimum_amount && $active_payment_maximum_amount);
         } 
         return false;
     
