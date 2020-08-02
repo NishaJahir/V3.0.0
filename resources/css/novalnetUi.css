@@ -62,7 +62,7 @@ margin-top: 14px;
 }
 
 #nnBankDetails, #nnTestMode {
-margin-left: 41.5%;
+margin-left: 41.5% !important;
 }
 
 @media screen and (max-width: 575px)
