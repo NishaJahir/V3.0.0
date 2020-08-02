@@ -81,7 +81,7 @@ class NovalnetOrderConfirmationDataProvider
                        $totalCallbackAmount += $transaction_details->callbackAmount;
                     }
                     
-                    if(in_array($tid_status, ['91', '100']) && ($db_details['payment_id'] == '27' && ($transaction_details->amount > $totalCallbackAmount) ) ) {
+                    if(in_array($tid_status, ['91', '100']) && ($db_details['payment_id'] == '27' && ($transaction_details->amount > $totalCallbackAmount) || $db_details['payment_id'] == 96) ) {
                         //$bankDetails .= PHP_EOL . $paymentService->getInvoicePrepaymentComments($db_details);
                         $bankDetails = $db_details;
                     }
