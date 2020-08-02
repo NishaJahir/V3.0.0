@@ -19,18 +19,19 @@
         <br><span id="nnReferenceText" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.any_one_reference_text")}}</span>
         <span id="nnReference1" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.payment_reference1")}}  BNR-{{bankDetails.product_id}}-{{bankDetails.order_no}}</span>
         <span id="nnReference2" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.payment_reference2")}} TID {{bankDetails.tid}}</span>
-        
+   {% endif %}
+</div>     
     {% if bankDetails.payment_id == 96 %}
     <br><div class="row" id="nnInstalmentDetails">
+        <strong class="col-6 col-sm-5">{{trans("Novalnet::PaymentMethod.instalment_info")}}</strong> 
         <span id="nnInstalmentPaidAmount" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.total_paid_amount_text")}} {{bankDetails.total_paid_amount}}</span>
         <span id="nnInstalmentCycleAmount" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.instalment_cycle_amount_text")}} {{bankDetails.instalment_cycle_amount}}</span>
         <span id="nnPaidInstalment" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.paid_instalment_text")}} {{bankDetails.paid_instalment}}</span>
         <span id="nnDueInstalment" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.due_instalment_text")}} {{bankDetails.due_instalment}}</span>
-        <span id="nnNextInstalment" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.next_instalment_text")}} {{bankDetails.next_instalment_date}}</span>
+        <span id="nnNextInstalment" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.next_instalment_text")}} {{bankDetails.next_instalment}}</span>
     </div>
     {% endif %}
-    {% endif %}
-</div>
+    
 {% endif %}
 
 
