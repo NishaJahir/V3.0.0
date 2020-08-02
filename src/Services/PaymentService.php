@@ -161,7 +161,17 @@ class PaymentService
         
         $this->executePayment($nnPaymentData);
         
-        $additional_info = $this->additionalInfo($nnPaymentData);
+        $additionalInfo = $this->additionalInfo($nnPaymentData);
+	
+	if($nnPaymentData['payment_id'] == 96) {
+		$instalmentInfo = [
+			'total_paid_amount' => $nnPaymentData['instalment_cycle_amount'],
+			'instalment_cycle_amount' => $nnPaymentData['instalment_cycle_amount'],
+			'paid_instalment' => $nnPaymentData['instalment_cycles_executed'],
+			'due_instalment' => $nnPaymentData['due_instalment_cycles'],
+			'next_instalment' => $nnPaymentData['next_instalment_date']
+		];
+	}
 	
 
         $transactionData = [
@@ -171,7 +181,8 @@ class PaymentService
             'ref_tid'          => $nnPaymentData['tid'],
             'payment_name'     => $nnPaymentData['payment_method'],
             'order_no'         => $nnPaymentData['order_no'],
-            'additional_info'  => !empty($additional_info) ? json_encode($additional_info) : 0,
+            'additional_info'  => !empty($additionalInfo) ? json_encode($additionalInfo) : 0,
+	    'instalment_info'  => !empty($instalmentInfo) ? json_encode($instalmentInfo) : 0,
         ];
        
         if($nnPaymentData['payment_id'] == 27 || (in_array($nnPaymentData['tid_status'], [85, 90])))
