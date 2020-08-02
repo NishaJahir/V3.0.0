@@ -712,8 +712,10 @@ class PaymentService
     */
     public function getPaymentConditionStaus(Basket $basket, $paymentKey)
     {
-        $PaymentActive = $this->config->get('Novalnet.'.$paymentKey.'_payment_active');
-        if ($PaymentActive == 'true') {
+        $paymentActive = $this->config->get('Novalnet.'.$paymentKey.'_payment_active');
+	    
+	   $this->getLogger(__METHOD__)->error('test', $paymentActive);
+        if ($paymentActive == 'true') {
             // Get payment minimum amount value
             $minimumAmount = $this->paymentHelper->getNovalnetConfig($paymentKey . '_min_amount');
             $minimumAmount = ((preg_match('/^[0-9]*$/', $minimumAmount) && $minimumAmount >= '999')  ? $minimumAmount : '999');
@@ -757,7 +759,7 @@ class PaymentService
             } 
             
         }
-        return false;
+       $this->getLogger(__METHOD__)->error('test123', $minimumAmount);
     }
 	
    
