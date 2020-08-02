@@ -77,6 +77,7 @@
 							{% set instalmentCycleAmount = ( instalmentNetAmount / instalmentCycle) | round(2, 'floor') %}
 							{% if instalmentCycleAmount > 9.99 %}
 					<option value="{{instalmentCycle}}">{{ trans("Novalnet::PaymentMethod.instalmentCycle#{instalmentCycle}") }} / {{instalmentCycleAmount}} {{orderCurrency}} {{ trans("Novalnet::PaymentMethod.recurringPeriodEveryMonths#{recurringPeriod}") }}</option>
+							{% endif %}
 							{% endfor %}
 						</select>
 					</div>
