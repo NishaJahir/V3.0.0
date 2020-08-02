@@ -8,16 +8,16 @@
 </div>
 <div class="row" id="nnBankDetails">
     {% if bankDetails is not empty %}
-        <span id="nnAmountTransferText" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.transfer_amount_text")}}</span>
-        <span id="nnAccountHolder" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.account_holder_novalnet")}} {{bankDetails.invoice_account_holder}}</span>
-        <span id="nnAccountIban" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.iban")}} {{bankDetails.invoice_iban}}</span>
-        <span id="nnAccountBic" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.bic")}} {{bankDetails.invoice_bic}}</span>
-        <span id="nnDueDate" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.due_date")}} {{bankDetails.due_date}}</span>
-        <span id="nnBankNamePlace" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.bank")}} {{bankDetails.invoice_bankname}} {{bankDetails.invoice_bankname}}</span>
-        <span id="nnOrderAmount" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.amount")}} {{bankDetails.amount}} {{bankDetails.currency}}</span><br>
-        <span id="nnReferenceText" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.any_one_reference_text")}}</span>
-        <span id="nnReference1" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.payment_reference1")}}  BNR-{{bankDetails.product_id}}-{{bankDetails.order_no}}</span>
-        <span id="nnReference2" class="col-6 col-sm-7">{{trans("Novalnet::PaymentMethod.payment_reference2")}} TID {{bankDetails.tid}}</span>
+        <span id="nnAmountTransferText" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.transfer_amount_text")}}</span>
+        <span id="nnAccountHolder" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.account_holder_novalnet")}} {{bankDetails.invoice_account_holder}}</span>
+        <span id="nnAccountIban" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.iban")}} {{bankDetails.invoice_iban}}</span>
+        <span id="nnAccountBic" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.bic")}} {{bankDetails.invoice_bic}}</span>
+        <span id="nnDueDate" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.due_date")}} {{bankDetails.due_date}}</span>
+        <span id="nnBankNamePlace" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.bank")}} {{bankDetails.invoice_bankname}} {{bankDetails.invoice_bankname}}</span>
+        <span id="nnOrderAmount" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.amount")}} {{bankDetails.amount}} {{bankDetails.currency}}</span><br>
+        <span id="nnReferenceText" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.any_one_reference_text")}}</span>
+        <span id="nnReference1" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.payment_reference1")}}  BNR-{{bankDetails.product_id}}-{{bankDetails.order_no}}</span>
+        <span id="nnReference2" class="col-6 col-sm-12">{{trans("Novalnet::PaymentMethod.payment_reference2")}} TID {{bankDetails.tid}}</span>
     {% endif %}
 </div>
 {% endif %}
