@@ -74,7 +74,9 @@
 						<select id="nnInstalmentCycle" type="text" name="nnInstalmentCycle" placeholder="{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}" class="form-control">
 							 <option value="0">{{trans("Novalnet::PaymentMethod.instalment_plan_label")}}</option>
 							{% for instalmentCycle in instalmentCycles %}
-					<option value="{{instalmentCycle}}">{{ trans("Novalnet::PaymentMethod.instalmentCycle#{instalmentCycle}") }} / {{( instalmentNetAmount / instalmentCycle) | round(2, 'floor')}} {{orderCurrency}} {{ trans("Novalnet::PaymentMethod.recurringPeriodEveryMonths#{recurringPeriod}") }}</option>
+							{% set instalmentCycleAmount = ( instalmentNetAmount / instalmentCycle) | round(2, 'floor') %}
+							{% if instalmentCycleAmount > 9.99 %}
+					<option value="{{instalmentCycle}}">{{ trans("Novalnet::PaymentMethod.instalmentCycle#{instalmentCycle}") }} / {{instalmentCycleAmount}} {{orderCurrency}} {{ trans("Novalnet::PaymentMethod.recurringPeriodEveryMonths#{recurringPeriod}") }}</option>
 							{% endfor %}
 						</select>
 					</div>
