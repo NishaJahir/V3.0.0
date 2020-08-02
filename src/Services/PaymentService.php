@@ -543,6 +543,7 @@ class PaymentService
 		
 		$payments = pluginApp(\Plenty\Modules\Payment\Contracts\PaymentRepositoryContract::class);  
        		$paymentDetails = $payments->getPaymentsByOrderId($order->id);
+		$this->getLogger(__METHOD__)->error('payment', $paymentDetails);
 	   	 foreach ($paymentDetails as $paymentDetail)
 		{
 			$property = $paymentDetail->properties;
@@ -624,8 +625,9 @@ class PaymentService
              $paymentData['paid_amount'] = 0;
              }
              $paymentData['booking_text'] = $transactionComments;  
-             $this->paymentHelper->updatePayments($tid, $responseData['tid_status'], $order->id);
+            // $this->paymentHelper->updatePayments($tid, $responseData['tid_status'], $order->id);
              $this->paymentHelper->createPlentyPayment($paymentData);
+		 
          } else {
                $error = $this->paymentHelper->getNovalnetStatusText($responseData);
                $this->getLogger(__METHOD__)->error('Novalnet::doCaptureVoid', $error);
