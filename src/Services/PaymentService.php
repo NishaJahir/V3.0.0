@@ -733,15 +733,23 @@ class PaymentService
         $transaction_details['amount'] = $transaction_details['amount'] / 100;
         //Decoding the json as array
         $transaction_details['additionalInfo'] = json_decode(  $transaction_details['additionalInfo'], true );
+	//Merging the array
+	$transaction_details = array_merge($transaction_details, $transaction_details['additionalInfo']);
+	//Unsetting the redundant key
+	unset($transaction_details['additionalInfo'];
 	if (!empty($transaction_details['instalmentInfo'])) {
 	$transaction_details['instalmentInfo'] = json_decode( $transaction_details['instalmentInfo'], true );
+	//Merging the array
+	$transaction_details = array_merge($transaction_details, $transaction_details['additionalInfo'], $transaction_details['instalmentInfo']);
+	//Unsetting the redundant key
+        unset($transaction_details['additionalInfo'], $transaction_details['instalmentInfo']);
 	}
         $this->getLogger(__METHOD__)->error('transaction', $transaction_details['instalmentInfo']);
-	//Merging the array
-        $transaction_details = array_merge($transaction_details, $transaction_details['additionalInfo']);
+	
+	
+        
 	$this->getLogger(__METHOD__)->error('transaction123', $transaction_details);
-        //Unsetting the redundant key
-        unset($transaction_details['additionalInfo'], $transaction_details['instalmentInfo']);
+        
         return $transaction_details;
         }
     }
