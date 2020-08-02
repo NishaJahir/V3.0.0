@@ -25,7 +25,7 @@
   "runOnBuild": [
     "Novalnet\\Migrations\\CreateAndUpdatePaymentMethodName",
     "Novalnet\\Migrations\\CreateTransactionTable",
-    "Novalnet\\Migrations\\UpdateTransactionTableDataType"
+    "Novalnet\\Migrations\\UpdateTransactionTableColumn"
   ],
   "dataProviders": [
     {
