@@ -68,7 +68,7 @@ class NovalnetOrderConfirmationDataProvider
                     $orderId = (int) $payment->order['orderId'];
                     $comment = '';
                     $db_details = $paymentService->getDatabaseValues($orderId);
-                    
+                    $paymentHelper->logger('db1', $db_details);
                     $comments = '';
                     $comments .= PHP_EOL . $paymentHelper->getTranslatedText('nn_tid') . $db_details['tid'];
                     if(!empty($db_details['test_mode'])) {
