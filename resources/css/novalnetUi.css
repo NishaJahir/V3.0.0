@@ -57,13 +57,17 @@ background-color: #f1f1f1;
   border: 0;
 }
 
+#novalnetForm .modal-body .form-control {
+margin-top: 14px;
+}
+
+#nnBankDetails, #nnTestMode {
+margin-left: 41.5%;
+}
+
 @media screen and (max-width: 575px)
 .autocomplete {
 width:100%;
-}
-
-#novalnetForm .modal-body .form-control {
-margin-top: 14px;
 }
 
 @media screen  and (max-width: 575px) {
