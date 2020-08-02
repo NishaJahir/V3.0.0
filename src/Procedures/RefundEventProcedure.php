@@ -152,7 +152,7 @@ class RefundEventProcedure
 						$paymentData['type']        = 'debit';
 						$paymentData['mop']         = $paymentDetails[0]->mopId;
 						$paymentData['booking_text'] = $transactionComments;  
-						$this->paymentHelper->updatePayments($paymentData['tid'], $responseData['tid_status'], $order->id);
+						//$this->paymentHelper->updatePayments($paymentData['tid'], $responseData['tid_status'], $order->id);
 						$this->paymentHelper->createPlentyPayment($paymentData);
 					}
 
