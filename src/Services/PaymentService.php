@@ -162,6 +162,7 @@ class PaymentService
         $this->executePayment($nnPaymentData);
         
         $additional_info = $this->additionalInfo($nnPaymentData);
+	
 
         $transactionData = [
             'amount'           => $nnPaymentData['amount'] * 100,
