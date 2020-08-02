@@ -736,15 +736,16 @@ class PaymentService
 	//Merging the array
 	$transaction_details = array_merge($transaction_details, $transaction_details['additionalInfo']);
 	//Unsetting the redundant key
-	unset($transaction_details['additionalInfo']);
+	//unset($transaction_details['additionalInfo']);
 	if (!empty($transaction_details['instalmentInfo'])) {
+	$this->getLogger(__METHOD__)->error('instalment', $transaction_details['instalmentInfo']);
 	$transaction_details['instalmentInfo'] = json_decode( $transaction_details['instalmentInfo'], true );
 	//Merging the array
 	$transaction_details = array_merge($transaction_details, $transaction_details['additionalInfo'], $transaction_details['instalmentInfo']);
 	//Unsetting the redundant key
         unset($transaction_details['additionalInfo'], $transaction_details['instalmentInfo']);
 	}
-        $this->getLogger(__METHOD__)->error('transaction', $transaction_details['instalmentInfo']);
+        
 	
 	
         
