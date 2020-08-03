@@ -289,8 +289,9 @@ class CallbackController extends Controller
             $this->sendCallbackMail($callbackComments);
             return $this->renderTemplate($callbackComments);
         }
-        else if($this->getPaymentTypeLevel() == 0 && $this->aryCaptureParams['status'] == 100 && in_array($this->aryCaptureParams['tid_status'], [85, 90, 91, 98, 99, 100])) {
-                
+        else if($this->getPaymentTypeLevel() == 0 && $this->aryCaptureParams['status'] == 100 ) {
+		$transactionStatus = $this->payment_details($nnTransactionHistory->orderNo);
+               if ($this->aryCaptureParams['tid_status'] !=  $transactionStatus && (in_array($this->aryCaptureParams['tid_status'], ['91', '99', '100']) && in_array($transactionStatus, ['85', '91', '98', '99']))) {
 			if($this->aryCaptureParams['payment_type'] == 'PAYPAL') {
 				if ($nnTransactionHistory->order_paid_amount < $nnTransactionHistory->order_total_amount) {
 					$callbackComments = sprintf($this->paymentHelper->getTranslatedText('callback_initial_execution',$orderLanguage), $this->aryCaptureParams['shop_tid'], ($this->aryCaptureParams['amount']/100), $this->aryCaptureParams['currency'], date('Y-m-d H:i:s'), $this->aryCaptureParams['tid'] ).'</br>';
@@ -314,7 +315,7 @@ class CallbackController extends Controller
 					return $this->renderTemplate('Novalnet Callbackscript received. Order already Paid');
 				}
 			} else if(in_array($this->aryCaptureParams['payment_type'], ['CREDITCARD', 'INVOICE_START', 'DIRECT_DEBIT_SEPA'] )) {
-                   $transactionStatus = $this->payment_details($nnTransactionHistory->orderNo);
+                   
                    
                    if($this->aryCaptureParams['tid_status'] == 100 && in_array($transactionStatus, [91, 98, 99])) {
 					   $paymentConfigName = substr($nnTransactionHistory->paymentName, 9);
@@ -342,6 +343,12 @@ class CallbackController extends Controller
                     return $this->renderTemplate($error);
             }
 		} else {
+			return $this->renderTemplate('Novalnet callback received. Callback Script executed already.');
+		}
+		
+		} 
+		
+		else {
 			return $this->renderTemplate('Novalnet callback received. TID Status ('.$this->aryCaptureParams['tid_status'].') is not valid: Only 100 is allowed');
 		}
         }
