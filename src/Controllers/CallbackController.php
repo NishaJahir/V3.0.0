@@ -480,6 +480,7 @@ class CallbackController extends Controller
     public function payment_details($orderId)
     {
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
+	  $this->getLogger(__METHOD__)->error('payment', $payments); 
         foreach ($payments as $payment)
         {
             //~ $property = $payment->properties;
