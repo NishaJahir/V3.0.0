@@ -491,8 +491,11 @@ class CallbackController extends Controller
                 $tid_status = $property->value;
               }
             }
-            return $tid_status;
+           
         }
+	    
+	$tid_status = (!empty($tid_status) ) ? $tid_status : 0;
+        return $tid_status;
     }
     
     /**
