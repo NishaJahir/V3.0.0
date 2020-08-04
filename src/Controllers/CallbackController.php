@@ -291,6 +291,7 @@ class CallbackController extends Controller
         }
         else if($this->getPaymentTypeLevel() == 0 && $this->aryCaptureParams['status'] == 100 ) {
 		$transactionStatus = $this->payment_details($nnTransactionHistory->orderNo);
+		$this->getLogger(__METHOD__)->error('tid status', $transactionStatus);
                if ($this->aryCaptureParams['tid_status'] !=  $transactionStatus && (in_array($this->aryCaptureParams['tid_status'], ['91', '99', '100']) && in_array($transactionStatus, ['85', '91', '98', '99']))) {
 			if($this->aryCaptureParams['payment_type'] == 'PAYPAL') {
 				if ($nnTransactionHistory->order_paid_amount < $nnTransactionHistory->order_total_amount) {
